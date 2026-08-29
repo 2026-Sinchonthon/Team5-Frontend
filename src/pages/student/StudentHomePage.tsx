@@ -1,18 +1,27 @@
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { studentJobs } from "../../data/studentJobs";
+import { getMyProfile } from "../../api/members";
 import "./StudentPages.css";
 
 export default function StudentHomePage() {
   const navigate = useNavigate();
   const activeJob = studentJobs[0];
   const latestJob = studentJobs[1];
+  const [name, setName] = useState<string | null>(null);
+
+  useEffect(() => {
+    getMyProfile()
+      .then((profile) => setName(profile.name))
+      .catch(() => setName(null));
+  }, []);
 
   return (
     <section className="student-page student-home">
       <header className="student-home__header">
         <div className="student-home__identity">
           <div className="student-home__school">학교<br />로고</div>
-          <p><strong>김신촌</strong>님, 환영합니다!</p>
+          <p><strong>{name ?? "..."}</strong>님, 환영합니다!</p>
         </div>
         <button type="button" className="student-home__notice" aria-label="알림">♟</button>
       </header>

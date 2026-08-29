@@ -1,8 +1,17 @@
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { getMyProfile } from "../../api/members";
 import "./HomePage.css";
 
 export default function HomePage() {
   const navigate = useNavigate();
+  const [name, setName] = useState<string | null>(null);
+
+  useEffect(() => {
+    getMyProfile()
+      .then((profile) => setName(profile.name))
+      .catch(() => setName(null));
+  }, []);
 
   return (
     <div className="owner-home">
@@ -14,7 +23,7 @@ export default function HomePage() {
           <br />
           로고
         </div>
-        <p className="owner-home__greeting">김신촌님, 환영합니다!</p>
+        <p className="owner-home__greeting">{name ?? "..."}님, 환영합니다!</p>
         <div className="owner-home__bell" aria-label="알림">
           <svg
             width="16"

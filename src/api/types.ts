@@ -55,6 +55,26 @@ export interface SignupOwnerResponse {
   role: MemberRole;
 }
 
+export interface MemberMeResponse {
+  memberId: number;
+  email: string;
+  name: string;
+  role: MemberRole;
+  status: MemberStatus;
+  profile:
+    | {
+        universityId: number;
+        universityName: string;
+        major: string | null;
+        introduction: string | null;
+      }
+    | {
+        businessName: string;
+        address: string | null;
+        introduction: string | null;
+      };
+}
+
 export interface SignupStudentRequest {
   email: string;
   password: string;
