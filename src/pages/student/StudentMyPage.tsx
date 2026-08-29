@@ -1,9 +1,15 @@
 import { useNavigate } from "react-router-dom";
+import { clearAccessToken } from "../../api/token";
 import { ChevronLeftIcon, ProfileIcon } from "../../components/common/Icon";
 import "./StudentPages.css";
 
 export default function StudentMyPage() {
   const navigate = useNavigate();
+
+  const handleLogout = () => {
+    clearAccessToken();
+    navigate("/");
+  };
   const savedProfile = localStorage.getItem("studentProfile");
   const nickname = savedProfile
     ? (JSON.parse(savedProfile) as { nickname?: string }).nickname ?? "김신촌"
@@ -34,6 +40,7 @@ export default function StudentMyPage() {
           계정 정보
         </button>
         <button type="button">나의 포트폴리오 관리</button>
+        <button type="button" onClick={handleLogout}>로그아웃</button>
       </div>
     </section>
   );

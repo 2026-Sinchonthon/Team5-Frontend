@@ -2,6 +2,7 @@ import type { RouteObject } from "react-router-dom";
 import StudentLoginPage from "../pages/auth/StudentLoginPage";
 import StudentSignupPage from "../pages/auth/StudentSignupPage";
 import StudentSplashPage from "../pages/auth/StudentSplashPage";
+import RequireAuth from "./RequireAuth";
 import StudentLayout from "../layouts/StudentLayout";
 import StudentJobListPage from "../pages/student/StudentJobListPage";
 import StudentJobDetailPage from "../pages/student/StudentJobDetailPage";
@@ -17,17 +18,22 @@ export const studentRoutes: RouteObject[] = [
   { path: "/signup/student", element: <StudentSignupPage /> },
   { path: "/student/splash", element: <StudentSplashPage /> },
   {
-    path: "/student",
-    element: <StudentLayout />,
+    element: <RequireAuth />,
     children: [
-      { index: true, element: <StudentHomePage /> },
-      { path: "jobs", element: <StudentJobListPage /> },
-      { path: "jobs/:jobId", element: <StudentJobDetailPage /> },
-      { path: "jobs/:jobId/apply", element: <StudentJobApplyPage /> },
-      { path: "matches", element: <StudentMatchesPage /> },
-      { path: "mypage", element: <StudentMyPage /> },
-      { path: "mypage/edit", element: <StudentMyPageEditPage /> },
-      { path: "chat/:roomId", element: <StudentChatPage /> },
+      {
+        path: "/student",
+        element: <StudentLayout />,
+        children: [
+          { index: true, element: <StudentHomePage /> },
+          { path: "jobs", element: <StudentJobListPage /> },
+          { path: "jobs/:jobId", element: <StudentJobDetailPage /> },
+          { path: "jobs/:jobId/apply", element: <StudentJobApplyPage /> },
+          { path: "matches", element: <StudentMatchesPage /> },
+          { path: "mypage", element: <StudentMyPage /> },
+          { path: "mypage/edit", element: <StudentMyPageEditPage /> },
+          { path: "chat/:roomId", element: <StudentChatPage /> },
+        ],
+      },
     ],
   },
 ];

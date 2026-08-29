@@ -132,7 +132,6 @@ export interface CreateJobPostRequest {
   title: string;
   description: string;
   rawRequest?: string;
-  imageUrls?: string[];
   category: JobPostCategory;
   budget: number;
   deadline: string;
