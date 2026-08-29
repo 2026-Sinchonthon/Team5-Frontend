@@ -1,14 +1,23 @@
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { studentJobs } from "../../data/studentJobs";
 import schoolLogo from "../../assets/design/school-logo.png";
 import jobHero from "../../assets/design/job-hero.png";
 import { BellIcon, ClockIcon } from "../../components/common/Icon";
+import { getMyProfile } from "../../api/members";
 import "./StudentPages.css";
 
 export default function StudentHomePage() {
   const navigate = useNavigate();
   const activeJob = studentJobs[0];
   const latestJobs = studentJobs.slice(1);
+  const [name, setName] = useState<string | null>(null);
+
+  useEffect(() => {
+    getMyProfile()
+      .then((profile) => setName(profile.name))
+      .catch(() => setName(null));
+  }, []);
 
   return (
     <section className="student-page student-home">
@@ -16,7 +25,7 @@ export default function StudentHomePage() {
         <div className="student-home__identity">
           <img className="student-home__school" src={schoolLogo} alt="학교 로고" />
           <p>
-            <strong>김신촌</strong>님, 환영합니다!
+            <strong>{name ?? "..."}</strong>님, 환영합니다!
           </p>
         </div>
         <button type="button" className="student-home__notice" aria-label="알림">

@@ -107,7 +107,18 @@ export default function JobsPage() {
 
       <ul className="owner-jobs__list">
         {jobs.map((job) => (
-          <li key={job.jobPostId} className="owner-jobs__item">
+          <li
+            key={job.jobPostId}
+            className="owner-jobs__item"
+            role="button"
+            tabIndex={0}
+            onClick={() => navigate(`/owner/jobs/${job.jobPostId}`)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                navigate(`/owner/jobs/${job.jobPostId}`);
+              }
+            }}
+          >
             {job.thumbnailImageUrl ? (
               <img
                 className="owner-jobs__thumbnail"
