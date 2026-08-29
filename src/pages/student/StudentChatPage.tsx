@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { ChevronLeftIcon, SendIcon } from "../../components/common/Icon";
 import "./StudentChatPage.css";
 
 interface ChatMessage {
@@ -34,7 +35,9 @@ export default function StudentChatPage() {
   return (
     <section className="chat-page">
       <header className="chat-page__header">
-        <button type="button" onClick={() => navigate("/student/matches")} aria-label="현재 매칭으로 돌아가기">‹</button>
+        <button type="button" onClick={() => navigate("/student/matches")} aria-label="현재 매칭으로 돌아가기">
+          <ChevronLeftIcon />
+        </button>
         <div>
           <h1>성수동 작은 식당</h1>
           <span>포스터 및 메뉴판 디자인</span>
@@ -79,7 +82,9 @@ export default function StudentChatPage() {
           placeholder="내용을 입력하세요."
           aria-label="메시지"
         />
-        <button type="submit" disabled={!message.trim()}>전송</button>
+        <button type="submit" disabled={!message.trim()} aria-label="전송">
+          <SendIcon width={16} height={16} />
+        </button>
       </form>
     </section>
   );

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { studentJobs } from "../../data/studentJobs";
+import { ChevronLeftIcon, ClockIcon, FilterIcon, SearchIcon } from "../../components/common/Icon";
 import "./StudentJobs.css";
 
 export default function StudentJobListPage() {
@@ -25,15 +26,19 @@ export default function StudentJobListPage() {
     <section className="jobs-page">
       <header className="jobs-page__header">
         <button type="button" className="jobs-page__back" onClick={() => navigate(-1)} aria-label="뒤로가기">
-          ‹
+          <ChevronLeftIcon />
         </button>
         <h1>구인 목록</h1>
       </header>
 
-      <div className="jobs-filter" aria-label="공고 정렬">
-        <button type="button" className="jobs-filter__item jobs-filter__item--active">최신순</button>
-        <button type="button" className="jobs-filter__item">거리순</button>
-        <button type="button" className="jobs-filter__item">사례금 높은 순</button>
+      <div className="jobs-page__search-row">
+        <div className="jobs-page__search-bar">
+          <SearchIcon width={16} height={16} />
+          <input type="text" placeholder="검색어를 입력해주세요" readOnly />
+        </div>
+        <button type="button" className="jobs-page__filter-button" aria-label="필터">
+          <FilterIcon width={18} height={18} />
+        </button>
       </div>
 
       <div className="job-list">
@@ -49,10 +54,13 @@ export default function StudentJobListPage() {
             </span>
             <span className="job-card__content">
               <strong>{job.storeName}</strong>
-              <span>{job.category}</span>
-              <span>{job.reward} · {job.deadline}</span>
+              <span className="job-card__meta">
+                <ClockIcon width={13} height={13} />
+                {job.deadline}
+              </span>
+              <span className="job-card__reward">{job.reward}</span>
+              <span className="job-card__category">{job.category}</span>
             </span>
-            <span className="job-card__arrow">›</span>
           </button>
         ))}
       </div>

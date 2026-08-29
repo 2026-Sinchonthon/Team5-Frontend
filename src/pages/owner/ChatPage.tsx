@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { ChevronLeftIcon, SendIcon } from "../../components/common/Icon";
 import "./ChatPage.css";
 
 const RECEIVED_MESSAGES = [
@@ -19,7 +20,7 @@ export default function ChatPage() {
           aria-label="뒤로가기"
           onClick={() => navigate(-1)}
         >
-          ←
+          <ChevronLeftIcon />
         </button>
         <h1 className="chat-page__title">글 제목</h1>
       </div>
@@ -53,19 +54,7 @@ export default function ChatPage() {
       >
         <input type="text" placeholder="내용을 입력하세요" />
         <button type="submit" className="chat-page__send" aria-label="전송">
-          <svg
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M22 2 11 13" />
-            <path d="M22 2 15 22l-4-9-9-4 20-7z" />
-          </svg>
+          <SendIcon width={16} height={16} />
         </button>
       </form>
     </div>

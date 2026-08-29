@@ -13,13 +13,14 @@
 }
 
 .chat-page__header > button {
+  display: grid;
   width: 34px;
   height: 34px;
   padding: 0;
+  place-items: center;
   border: 0;
   background: none;
-  color: #555;
-  font-size: 28px;
+  color: var(--color-text);
   cursor: pointer;
 }
 
@@ -109,7 +110,7 @@
 
 .chat-message--student p {
   border-radius: 12px 4px 12px 12px;
-  background: #999;
+  background: var(--color-primary);
   color: #fff;
 }
 
@@ -143,16 +144,19 @@
 }
 
 .chat-page__composer button {
-  padding: 0 12px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  background: #fff;
-  color: #555;
-  font-size: 10px;
+  display: grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: #fff;
   cursor: pointer;
 }
 
 .chat-page__composer button:disabled {
-  color: #bbb;
+  background: #dedede;
+  color: #fff;
   cursor: default;
 }

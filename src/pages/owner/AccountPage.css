@@ -3,9 +3,12 @@
 }
 
 .account-page__avatar {
-  width: 110px;
-  height: 110px;
+  display: grid;
+  width: 130px;
+  height: 130px;
   margin: 0 auto 32px;
+  place-items: center;
   border-radius: 50%;
-  background: #d9d9d9;
+  background: #eef2f6;
+  color: var(--color-primary);
 }

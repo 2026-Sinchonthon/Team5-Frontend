@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import { ChevronLeftIcon, SearchIcon } from "../../components/common/Icon";
 import {
   JOB_CATEGORY_OPTIONS,
   jobCategoryLabel,
@@ -37,7 +38,7 @@ export default function JobsSearchPage() {
         aria-label="뒤로가기"
         onClick={() => navigate(-1)}
       >
-        ←
+        <ChevronLeftIcon />
       </button>
 
       <div className="jobs-search__bar">
@@ -59,19 +60,7 @@ export default function JobsSearchPage() {
           aria-label="검색"
           onClick={runSearch}
         >
-          <svg
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <circle cx="11" cy="11" r="7" />
-            <path d="m21 21-4.3-4.3" />
-          </svg>
+          <SearchIcon width={16} height={16} />
         </button>
       </div>
 

@@ -2,6 +2,7 @@ import { useState, type FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import { createJobPost } from "../../api/jobPosts";
 import { getApiErrorMessage } from "../../api/client";
+import { CameraIcon, ChevronLeftIcon } from "../../components/common/Icon";
 import {
   JOB_CATEGORY_OPTIONS,
   type JobPostCategory,
@@ -59,7 +60,7 @@ export default function JobCreatePage() {
           aria-label="뒤로가기"
           onClick={() => navigate(-1)}
         >
-          ←
+          <ChevronLeftIcon />
         </button>
         <h1 className="job-create__title">글 쓰기</h1>
       </div>
@@ -67,20 +68,7 @@ export default function JobCreatePage() {
       <form className="job-create__form" onSubmit={handleSubmit}>
         <label className="job-create__image-upload">
           <input type="file" accept="image/*" hidden />
-          <svg
-            width="22"
-            height="22"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <rect x="3" y="3" width="18" height="18" rx="2" />
-            <circle cx="8.5" cy="8.5" r="1.5" />
-            <path d="M21 15l-5-5L5 21" />
-          </svg>
+          <CameraIcon width={22} height={22} />
         </label>
 
         <div className="job-create__field">

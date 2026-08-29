@@ -4,6 +4,19 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --color-primary: #2993ea;
+  --color-primary-dark: #1da1fa;
+  --color-danger-bg: #ffcfcf;
+  --color-danger-text: #ff3737;
+  --color-text: #1a1a1a;
+  --color-text-muted: #545454;
+  --color-placeholder: #999;
+  --color-border: #cbcbcb;
+  --color-input-bg: #f6f6f6;
+  --color-app-border: #ececef;
+  --radius-control: 10px;
+  --radius-card: 16px;
 }
 
 * {
@@ -13,7 +26,9 @@
 body {
   margin: 0;
   min-height: 100svh;
-  font-family: system-ui, "Segoe UI", Roboto, sans-serif;
+  font-family: "Pretendard Variable", Pretendard, system-ui, "Segoe UI", Roboto,
+    sans-serif;
+  color: var(--color-text);
 }
 
 #root {

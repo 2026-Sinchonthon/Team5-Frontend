@@ -1,4 +1,7 @@
 import { useNavigate } from "react-router-dom";
+import schoolLogo from "../../assets/design/school-logo.png";
+import jobHero from "../../assets/design/job-hero.png";
+import { BellIcon, ClockIcon } from "../../components/common/Icon";
 import "./HomePage.css";
 
 export default function HomePage() {
@@ -6,61 +9,46 @@ export default function HomePage() {
 
   return (
     <div className="owner-home">
-      <h1 className="owner-home__title">홈</h1>
-
-      <div className="owner-home__profile">
-        <div className="owner-home__avatar">
-          학교
-          <br />
-          로고
+      <header className="owner-home__header">
+        <div className="owner-home__identity">
+          <img className="owner-home__avatar" src={schoolLogo} alt="사이트 로고" />
+          <p className="owner-home__greeting">
+            <strong>김사장</strong>님, 환영합니다!
+          </p>
         </div>
-        <p className="owner-home__greeting">김신촌님, 환영합니다!</p>
-        <div className="owner-home__bell" aria-label="알림">
-          <svg
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" />
-            <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" />
-          </svg>
-        </div>
-      </div>
+        <button type="button" className="owner-home__bell" aria-label="알림">
+          <BellIcon width={18} height={18} />
+        </button>
+      </header>
 
       <section className="owner-home__section">
-        <h2>현재 매칭</h2>
-        <p className="owner-home__restaurant-name">식당 이름</p>
+        <h2>진행 중인 작업</h2>
 
-        <div className="owner-home__matching-card">
-          <div className="owner-home__matching-image">이미지</div>
-
-          <div className="owner-home__matching-info">
-            <div className="owner-home__deadline-row">
-              <span>마감 기한까지</span>
-              <strong>D-3</strong>
-            </div>
+        <button
+          type="button"
+          className="owner-home__matching-card"
+          style={{ backgroundImage: `url(${jobHero})` }}
+          onClick={() => navigate("/owner/chat/1")}
+        >
+          <div className="owner-home__matching-overlay">
+            <strong>와플잇업 웹사이트 제작</strong>
+            <span>작업 기간 | 8/12 ~ 8/18</span>
             <div className="owner-home__progress">
-              <div className="owner-home__progress-bar" />
+              <span style={{ width: "48%" }} />
             </div>
-            <div className="owner-home__progress-dates">
-              <span>8/12</span>
-              <span>8/18</span>
+            <div className="owner-home__deadline">
+              <ClockIcon width={16} height={16} />
+              <b>D-3</b>
             </div>
-            <p className="owner-home__reward">사례금 | 100,000원</p>
-            <button
-              type="button"
-              className="owner-home__chat-button"
-              onClick={() => navigate("/owner/chat/1")}
-            >
-              채팅방 이동
-            </button>
           </div>
-        </div>
+        </button>
+        <button
+          type="button"
+          className="owner-home__chat-button"
+          onClick={() => navigate("/owner/chat/1")}
+        >
+          채팅방 이동
+        </button>
       </section>
 
       <section className="owner-home__section">

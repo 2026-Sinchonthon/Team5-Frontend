@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { ChevronLeftIcon, ProfileIcon } from "../../components/common/Icon";
 import "./StudentPages.css";
 
 interface StudentProfile {
@@ -29,16 +30,21 @@ export default function StudentMyPageEditPage() {
   };
 
   return (
-    <section className="student-page mypage-edit">
+    <section className="student-page mypage">
       <header className="mypage__header">
-        <button type="button" onClick={() => navigate(-1)} aria-label="뒤로가기">‹</button>
+        <button type="button" onClick={() => navigate(-1)} aria-label="뒤로가기">
+          <ChevronLeftIcon />
+        </button>
         <h1>계정 정보 수정</h1>
+        <span aria-hidden="true" />
       </header>
 
-      <div className="mypage-edit__avatar">♟</div>
+      <div className="mypage__avatar">
+        <ProfileIcon width={40} height={40} />
+      </div>
 
       <form
-        className="mypage-edit__form"
+        className="mypage__form"
         onSubmit={(event) => {
           event.preventDefault();
 

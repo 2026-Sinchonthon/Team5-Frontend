@@ -1,4 +1,5 @@
 import { NavLink, Outlet, useLocation } from "react-router-dom";
+import { ChatIcon, HomeIcon, ListIcon, ProfileIcon } from "../components/common/Icon";
 import "./StudentLayout.css";
 
 export default function StudentLayout() {
@@ -13,19 +14,19 @@ export default function StudentLayout() {
 
       {!isChatPage && <nav className="student-bottom-nav" aria-label="학생 메뉴">
         <NavLink to="/student/jobs" className="student-bottom-nav__item">
-          <span className="student-bottom-nav__icon">▤</span>
+          <ListIcon />
           <span>구인 목록</span>
         </NavLink>
         <NavLink to="/student" end className="student-bottom-nav__item">
-          <span className="student-bottom-nav__icon">⌂</span>
+          <HomeIcon />
           <span>홈</span>
         </NavLink>
         <NavLink to="/student/matches" className="student-bottom-nav__item">
-          <span className="student-bottom-nav__icon">◎</span>
-          <span>현재 매칭</span>
+          <ChatIcon />
+          <span>매칭 현황</span>
         </NavLink>
         <NavLink to="/student/mypage" className="student-bottom-nav__item">
-          <span className="student-bottom-nav__icon">○</span>
+          <ProfileIcon />
           <span>마이페이지</span>
         </NavLink>
       </nav>}

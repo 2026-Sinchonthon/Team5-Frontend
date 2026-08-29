@@ -1,5 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { studentJobs } from "../../data/studentJobs";
+import jobHero from "../../assets/design/job-hero.png";
+import { ChevronLeftIcon } from "../../components/common/Icon";
 import "./StudentJobs.css";
 
 export default function StudentJobDetailPage() {
@@ -18,27 +20,31 @@ export default function StudentJobDetailPage() {
 
   return (
     <article className="job-detail">
-      <header className="job-detail__header">
-        <button type="button" className="jobs-page__back" onClick={() => navigate(-1)} aria-label="뒤로가기">‹</button>
-        <h1>{job.storeName}</h1>
-        <span aria-hidden="true" />
-      </header>
+      <button type="button" className="job-detail__back" onClick={() => navigate(-1)} aria-label="뒤로가기">
+        <ChevronLeftIcon />
+      </button>
 
-      <div className="job-detail__hero" style={{ background: job.color }}>
-        <span>{job.storeName.slice(0, 1)}</span>
+      <h1>{job.storeName}</h1>
+
+      <div className="job-detail__hero" style={{ backgroundImage: `url(${jobHero})` }} />
+
+      <div className="job-detail__price-row">
+        <strong>사례금</strong>
+        <span>{job.reward}</span>
       </div>
+      <p className="job-detail__deadline-row">
+        <strong>마감 기한</strong> | {job.deadline}
+      </p>
 
-      <div className="job-detail__body">
-        <span className="job-detail__category">{job.category}</span>
-        <section>
-          <h2>사장님 요청 내용</h2>
-          <p>{job.description}</p>
-        </section>
-        <dl className="job-detail__info">
-          <div><dt>마감 기한</dt><dd>{job.deadline}</dd></div>
-          <div><dt>사례금</dt><dd>{job.reward}</dd></div>
-          <div><dt>매칭 현황</dt><dd>{job.matchStatus}</dd></div>
-        </dl>
+      <hr className="job-detail__divider" />
+
+      <p className="job-detail__description">{job.description}</p>
+
+      <hr className="job-detail__divider" />
+
+      <div className="job-detail__status-row">
+        <strong>매칭 현황</strong>
+        <span>{job.matchStatus}</span>
       </div>
 
       <button

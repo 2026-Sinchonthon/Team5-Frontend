@@ -1,40 +1,49 @@
 import { useNavigate } from "react-router-dom";
 import { studentJobs } from "../../data/studentJobs";
+import schoolLogo from "../../assets/design/school-logo.png";
+import jobHero from "../../assets/design/job-hero.png";
+import { BellIcon, ClockIcon } from "../../components/common/Icon";
 import "./StudentPages.css";
 
 export default function StudentHomePage() {
   const navigate = useNavigate();
   const activeJob = studentJobs[0];
-  const latestJob = studentJobs[1];
+  const latestJobs = studentJobs.slice(1);
 
   return (
     <section className="student-page student-home">
       <header className="student-home__header">
         <div className="student-home__identity">
-          <div className="student-home__school">학교<br />로고</div>
-          <p><strong>김신촌</strong>님, 환영합니다!</p>
+          <img className="student-home__school" src={schoolLogo} alt="학교 로고" />
+          <p>
+            <strong>김신촌</strong>님, 환영합니다!
+          </p>
         </div>
-        <button type="button" className="student-home__notice" aria-label="알림">♟</button>
+        <button type="button" className="student-home__notice" aria-label="알림">
+          <BellIcon width={18} height={18} />
+        </button>
       </header>
 
       <section className="student-home__active">
-        <h1>진행 중인 ~</h1>
-        <h2>{activeJob.storeName}</h2>
-        <div className="student-home__active-content">
-          <div className="student-home__active-image" style={{ background: activeJob.color }}>
-            {activeJob.storeName[0]}
-          </div>
-          <div className="student-home__active-info">
-            <div className="student-home__deadline">
-              <strong>마감 기한까지</strong>
-              <b>D - 3</b>
+        <h1>진행 중인 작업</h1>
+        <button
+          type="button"
+          className="student-home__active-card"
+          style={{ backgroundImage: `url(${jobHero})` }}
+          onClick={() => navigate("/student/matches")}
+        >
+          <div className="student-home__active-card-overlay">
+            <strong>{activeJob.storeName}</strong>
+            <span>작업 기간 | 8/12 ~ 8/18</span>
+            <div className="student-home__progress">
+              <span style={{ width: "48%" }} />
             </div>
-            <div className="student-home__progress"><span /></div>
-            <div className="student-home__progress-label"><span>8/12</span><span>8/18</span></div>
-            <p>사례금 | <strong>{activeJob.reward}</strong></p>
-            <button type="button" onClick={() => navigate("/student/matches")}>채팅방 이동</button>
+            <div className="student-home__deadline">
+              <ClockIcon width={16} height={16} />
+              <b>D-3</b>
+            </div>
           </div>
-        </div>
+        </button>
       </section>
 
       <section className="student-home__latest">
@@ -42,17 +51,24 @@ export default function StudentHomePage() {
           <h2>최신 구인글</h2>
           <button type="button" onClick={() => navigate("/student/jobs")}>전체보기 ›</button>
         </div>
-        <button
-          type="button"
-          className="student-home__latest-card"
-          style={{ background: latestJob.color }}
-          onClick={() => navigate(`/student/jobs/${latestJob.id}`)}
-          aria-label={`${latestJob.storeName} 공고 상세 보기`}
-        >
-          <span>{latestJob.storeName[0]}</span>
-          <strong>{latestJob.storeName}</strong>
-          <small>{latestJob.category} · {latestJob.reward}</small>
-        </button>
+        <div className="student-home__latest-scroll">
+          {latestJobs.map((job) => (
+            <button
+              key={job.id}
+              type="button"
+              className="student-home__latest-card"
+              onClick={() => navigate(`/student/jobs/${job.id}`)}
+            >
+              <span className="student-home__latest-thumb" style={{ background: job.color }}>
+                {job.storeName[0]}
+              </span>
+              <span className="student-home__latest-body">
+                <strong>{job.storeName}</strong>
+                <small>{job.category} · {job.reward}</small>
+              </span>
+            </button>
+          ))}
+        </div>
       </section>
     </section>
   );

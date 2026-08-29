@@ -3,6 +3,7 @@ import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { listJobPosts } from "../../api/jobPosts";
 import { getApiErrorMessage } from "../../api/client";
 import type { JobPostSummary } from "../../api/types";
+import { ChevronLeftIcon, FilterIcon } from "../../components/common/Icon";
 import { jobCategoryLabel, type JobPostCategory } from "../../constants/jobCategories";
 import "./JobsPage.css";
 
@@ -70,7 +71,7 @@ export default function JobsPage() {
         aria-label="뒤로가기"
         onClick={() => navigate(-1)}
       >
-        ←
+        <ChevronLeftIcon />
       </button>
 
       <div className="owner-jobs__search-row">
@@ -87,18 +88,7 @@ export default function JobsPage() {
             )
           }
         >
-          <svg
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M3 4h18l-7 8v6l-4 2v-8L3 4z" />
-          </svg>
+          <FilterIcon width={16} height={16} />
         </button>
         {selectedCategory && (
           <span className="owner-jobs__filter-chip">
@@ -127,7 +117,11 @@ export default function JobsPage() {
             ) : (
               <div className="owner-jobs__thumbnail" />
             )}
-            <p className="owner-jobs__name">{job.title}</p>
+            <div className="owner-jobs__info">
+              <p className="owner-jobs__name">{job.title}</p>
+              <span className="owner-jobs__budget">{job.budget.toLocaleString()}원</span>
+              <span className="owner-jobs__category">{jobCategoryLabel(job.category)}</span>
+            </div>
           </li>
         ))}
       </ul>

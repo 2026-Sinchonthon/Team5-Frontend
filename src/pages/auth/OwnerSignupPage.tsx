@@ -1,8 +1,9 @@
 import { useState, type FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthFrame from "../../components/common/AuthFrame";
-import { signupOwner } from "../../api/auth";
+import { login, signupOwner } from "../../api/auth";
 import { getApiErrorMessage } from "../../api/client";
+import { setAccessToken } from "../../api/token";
 import "./OwnerAuthForm.css";
 
 export default function OwnerSignupPage() {
@@ -33,7 +34,17 @@ export default function OwnerSignupPage() {
         name: nickname,
         businessName,
       });
-      navigate("/owner/home");
+
+      try {
+        const { accessToken } = await login({ email, password });
+        setAccessToken(accessToken);
+        navigate("/owner/home");
+      } catch {
+        // Signup succeeded but auto-login failed (e.g. slow backend) —
+        // send the user to log in manually instead of leaving them
+        // stuck on an authenticated page with no token.
+        navigate("/login/owner");
+      }
     } catch (error) {
       setErrorMessage(
         getApiErrorMessage(

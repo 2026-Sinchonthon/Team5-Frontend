@@ -6,8 +6,12 @@ export default function RoleSelectPage() {
   const navigate = useNavigate();
 
   return (
-    <AuthFrame title="로그인">
-      <div className="role-select__logo">로고</div>
+    <AuthFrame>
+      <div className="role-select__logo">
+        사이트
+        <br />
+        로고
+      </div>
 
       <p className="role-select__hint">아래 버튼을 눌러 선택해주세요.</p>
 

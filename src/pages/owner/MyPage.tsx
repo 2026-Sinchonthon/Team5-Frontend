@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { ChevronLeftIcon, ProfileIcon } from "../../components/common/Icon";
 import "./MyPage.css";
 
 export default function MyPage() {
@@ -13,25 +14,13 @@ export default function MyPage() {
           aria-label="뒤로가기"
           onClick={() => navigate(-1)}
         >
-          ←
+          <ChevronLeftIcon />
         </button>
         <h1 className="my-page__title">마이페이지</h1>
       </div>
 
       <div className="my-page__avatar" aria-hidden="true">
-        <svg
-          width="28"
-          height="28"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <circle cx="12" cy="8" r="4" />
-          <path d="M4 20c0-4 4-6 8-6s8 2 8 6" />
-        </svg>
+        <ProfileIcon width={40} height={40} />
       </div>
       <p className="my-page__name">김사장</p>
 
@@ -42,7 +31,6 @@ export default function MyPage() {
             className="my-page__menu-item"
             onClick={() => navigate("/owner/mypage/account")}
           >
-            <span className="my-page__menu-icon" />
             계정 정보
           </button>
         </li>
@@ -52,7 +40,6 @@ export default function MyPage() {
             className="my-page__menu-item"
             onClick={() => navigate("/owner/mypage/posts")}
           >
-            <span className="my-page__menu-icon" />
             나의 게시글
           </button>
         </li>

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { getMyJobPosts } from "../../api/jobPosts";
 import { getApiErrorMessage } from "../../api/client";
 import type { MyJobPost } from "../../api/types";
+import { ChevronLeftIcon } from "../../components/common/Icon";
 import "./JobsPage.css";
 import "./MyPostsPage.css";
 
@@ -44,7 +45,7 @@ export default function MyPostsPage() {
         aria-label="뒤로가기"
         onClick={() => navigate(-1)}
       >
-        ←
+        <ChevronLeftIcon />
       </button>
 
       {isLoading && <p className="owner-jobs__status">불러오는 중...</p>}

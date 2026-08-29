@@ -1,41 +1,42 @@
 .role-select__logo {
-  width: 140px;
-  height: 140px;
+  width: 204px;
+  height: 195px;
   margin: 0 auto 40px;
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
   background: #d9d9d9;
-  border-radius: 8px;
-  color: #333;
-  font-weight: 600;
+  color: var(--color-text);
+  font-size: 28px;
+  line-height: 1.4;
 }
 
 .role-select__hint {
-  margin: 0 0 24px;
+  margin: 0 0 32px;
   text-align: center;
-  color: #555;
-  font-size: 14px;
+  color: var(--color-placeholder);
+  font-size: 16px;
 }
 
 .role-select__buttons {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 24px;
   margin-top: auto;
 }
 
 .role-select__button {
-  padding: 14px;
-  border: none;
-  border-radius: 6px;
-  background: #8a8a8a;
+  padding: 16px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-control);
+  background: var(--color-primary);
   color: #fff;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 600;
   cursor: pointer;
 }
 
 .role-select__button:hover {
-  background: #767676;
+  background: var(--color-primary-dark);
 }

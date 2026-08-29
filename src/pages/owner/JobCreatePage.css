@@ -1,11 +1,12 @@
 .job-create {
   box-sizing: border-box;
-  max-width: 360px;
+  max-width: 402px;
   min-height: 100svh;
   margin: 0 auto;
-  padding: 32px 24px 40px;
-  border-left: 1px solid #e5e4e7;
-  border-right: 1px solid #e5e4e7;
+  padding: 32px 26px 40px;
+  background: #fff;
+  border-left: 1px solid var(--color-app-border);
+  border-right: 1px solid var(--color-app-border);
 }
 
 .job-create__header {
@@ -16,19 +17,21 @@
 }
 
 .job-create__back {
+  display: grid;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  place-items: center;
   border: none;
   background: none;
-  padding: 0;
-  color: #1a1a1a;
-  font-size: 20px;
-  line-height: 1;
+  color: var(--color-text);
   cursor: pointer;
 }
 
 .job-create__title {
   margin: 0;
-  font-size: 18px;
-  font-weight: 700;
+  font-size: 20px;
+  font-weight: 600;
 }
 
 .job-create__form {
@@ -40,12 +43,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 72px;
-  height: 72px;
+  width: 104px;
+  height: 92px;
   margin-bottom: 24px;
-  border: 1px solid #d9d9d9;
-  border-radius: 8px;
-  color: #9a9a9a;
+  border: 1px solid #9d9d9d;
+  border-radius: var(--radius-control);
+  color: var(--color-placeholder);
   cursor: pointer;
 }
 
@@ -55,9 +58,9 @@
 
 .job-create__field label {
   display: block;
-  margin-bottom: 8px;
-  color: #1a1a1a;
-  font-size: 14px;
+  margin-bottom: 10px;
+  color: var(--color-text);
+  font-size: 15px;
   font-weight: 600;
 }
 
@@ -65,12 +68,18 @@
 .job-create__field textarea {
   box-sizing: border-box;
   width: 100%;
-  padding: 12px 14px;
-  border: 1px solid #d9d9d9;
-  border-radius: 6px;
-  background: #f4f3ec;
+  padding: 15px 17px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-control);
+  background: var(--color-input-bg);
   font-family: inherit;
-  font-size: 14px;
+  font-size: 15px;
+  color: var(--color-text);
+}
+
+.job-create__field input::placeholder,
+.job-create__field textarea::placeholder {
+  color: var(--color-placeholder);
 }
 
 .job-create__field textarea {
@@ -79,7 +88,7 @@
 
 .job-create__field input:disabled,
 .job-create__field textarea:disabled {
-  color: #9a9a9a;
+  color: var(--color-text);
   cursor: not-allowed;
 }
 
@@ -90,24 +99,25 @@
 }
 
 .job-create__category-option {
-  border: none;
+  border: 1px solid var(--color-border);
   border-radius: 999px;
-  background: #ececec;
+  background: #fff;
   padding: 8px 14px;
-  color: #555;
+  color: var(--color-text-muted);
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
 }
 
 .job-create__category-option--active {
-  background: #6b6375;
+  border-color: var(--color-primary);
+  background: var(--color-primary);
   color: #fff;
 }
 
 .job-create__error {
   margin: -8px 0 16px;
-  color: #d64545;
+  color: var(--color-danger-text);
   font-size: 13px;
 }
 
@@ -116,16 +126,16 @@
 }
 
 .job-create__input-with-suffix input {
-  padding-right: 36px;
+  padding-right: 40px;
 }
 
 .job-create__input-with-suffix span {
   position: absolute;
   top: 50%;
-  right: 14px;
+  right: 16px;
   transform: translateY(-50%);
-  color: #9a9a9a;
-  font-size: 13px;
+  color: var(--color-placeholder);
+  font-size: 14px;
 }
 
 .job-create__toggle-row {
@@ -134,8 +144,8 @@
   justify-content: space-between;
   gap: 12px;
   margin-bottom: 32px;
-  color: #333;
-  font-size: 13px;
+  color: var(--color-text);
+  font-size: 15px;
 }
 
 .job-create__toggle {
@@ -173,7 +183,7 @@
 }
 
 .job-create__toggle input:checked + .job-create__toggle-slider {
-  background: #6b6375;
+  background: var(--color-primary);
 }
 
 .job-create__toggle input:checked + .job-create__toggle-slider::before {
@@ -186,18 +196,18 @@
 }
 
 .job-create__submit {
-  border: none;
-  border-radius: 6px;
-  background: #8a8a8a;
-  padding: 14px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-control);
+  background: var(--color-primary);
+  padding: 16px;
   color: #fff;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 600;
   cursor: pointer;
 }
 
 .job-create__submit:hover {
-  background: #767676;
+  background: var(--color-primary-dark);
 }
 
 .job-create__submit:disabled {

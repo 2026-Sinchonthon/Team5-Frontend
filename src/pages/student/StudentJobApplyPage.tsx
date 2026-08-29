@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { studentJobs } from "../../data/studentJobs";
+import { ChevronLeftIcon } from "../../components/common/Icon";
 import "./StudentJobs.css";
 
 export default function StudentJobApplyPage() {
@@ -23,7 +24,9 @@ export default function StudentJobApplyPage() {
   return (
     <section className="job-apply">
       <header className="job-apply__header">
-        <button type="button" onClick={() => navigate(-1)} aria-label="뒤로가기">‹</button>
+        <button type="button" onClick={() => navigate(-1)} aria-label="뒤로가기">
+          <ChevronLeftIcon />
+        </button>
         <h1>매칭 신청서 작성</h1>
         <span aria-hidden="true" />
       </header>
@@ -34,6 +37,16 @@ export default function StudentJobApplyPage() {
           <strong>{job.storeName}</strong>
           <span>{job.category}</span>
         </div>
+      </div>
+
+      <div className="job-apply__summary">
+        <div className="job-apply__summary-row">
+          <strong>사례금</strong>
+          <span>{job.reward}</span>
+        </div>
+        <p>
+          <strong>마감 기한</strong> | {job.deadline}
+        </p>
       </div>
 
       <form
@@ -47,7 +60,7 @@ export default function StudentJobApplyPage() {
         }}
       >
         <label className="job-apply__introduction">
-          <span><b>*</b> 이런 점이 잘 맞아요</span>
+          <span><b>*</b> 이력 설명 및 자기소개</span>
           <textarea
             value={introduction}
             onChange={(event) => setIntroduction(event.target.value)}

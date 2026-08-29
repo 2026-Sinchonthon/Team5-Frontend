@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { studentJobs } from "../../data/studentJobs";
+import jobHero from "../../assets/design/job-hero.png";
 import "./StudentPages.css";
 
 export default function StudentMatchesPage() {
@@ -15,23 +16,25 @@ export default function StudentMatchesPage() {
     <section className="student-page matches-page">
       <section className="matches-current">
         <h1>진행 중인 매칭</h1>
-        <h2>{activeJob.storeName}</h2>
 
-        <div className="matches-current__content">
-          <div className="matches-current__image" style={{ background: activeJob.color }}>
-            {activeJob.storeName[0]}
+        <button
+          type="button"
+          className="matches-current__card"
+          style={{ backgroundImage: `url(${jobHero})` }}
+          onClick={() => navigate("/student/chat/1")}
+        >
+          <div className="matches-current__overlay">
+            <strong>{activeJob.storeName}</strong>
+            <span>사례금 {activeJob.reward}</span>
           </div>
-          <div className="matches-current__info">
-            <div className="matches-current__deadline">
-              <strong>마감 기한까지</strong>
-              <b>D - 3</b>
-            </div>
-            <div className="matches-current__progress"><span /></div>
-            <div className="matches-current__labels"><span>시작</span><span>마감</span></div>
-            <p>사례금 <strong>{activeJob.reward}</strong></p>
-            <button type="button" onClick={() => navigate("/student/chat/1")}>채팅방 이동</button>
-          </div>
-        </div>
+        </button>
+        <button
+          type="button"
+          className="matches-current__chat"
+          onClick={() => navigate("/student/chat/1")}
+        >
+          채팅방 이동
+        </button>
       </section>
 
       <section className="match-history">
