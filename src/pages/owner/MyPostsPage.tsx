@@ -3,10 +3,10 @@ import "./JobsPage.css";
 import "./MyPostsPage.css";
 
 const MOCK_POSTS = [
-  { id: "1", name: "식당 이름" },
-  { id: "2", name: "식당 이름" },
-  { id: "3", name: "식당 이름" },
-  { id: "4", name: "식당 이름" },
+  { id: "1", name: "식당 이름", completed: false },
+  { id: "2", name: "식당 이름", completed: true },
+  { id: "3", name: "식당 이름", completed: false },
+  { id: "4", name: "식당 이름", completed: false },
 ];
 
 export default function MyPostsPage() {
@@ -25,9 +25,21 @@ export default function MyPostsPage() {
 
       <ul className="my-posts__list">
         {MOCK_POSTS.map((post) => (
-          <li key={post.id} className="my-posts__item">
-            <div className="owner-jobs__thumbnail" />
-            <p className="owner-jobs__name">{post.name}</p>
+          <li key={post.id}>
+            <button
+              type="button"
+              className="my-posts__item"
+              onClick={() =>
+                navigate(
+                  post.completed
+                    ? `/owner/jobs/${post.id}/completed`
+                    : `/owner/jobs/${post.id}/edit`,
+                )
+              }
+            >
+              <div className="owner-jobs__thumbnail" />
+              <p className="owner-jobs__name">{post.name}</p>
+            </button>
           </li>
         ))}
       </ul>

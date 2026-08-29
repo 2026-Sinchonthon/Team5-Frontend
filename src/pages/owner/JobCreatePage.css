@@ -77,6 +77,12 @@
   resize: vertical;
 }
 
+.job-create__field input:disabled,
+.job-create__field textarea:disabled {
+  color: #9a9a9a;
+  cursor: not-allowed;
+}
+
 .job-create__input-with-suffix {
   position: relative;
 }
@@ -144,6 +150,11 @@
 
 .job-create__toggle input:checked + .job-create__toggle-slider::before {
   transform: translateX(18px);
+}
+
+.job-create__toggle input:disabled + .job-create__toggle-slider {
+  cursor: not-allowed;
+  opacity: 0.7;
 }
 
 .job-create__submit {
