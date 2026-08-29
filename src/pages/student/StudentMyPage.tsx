@@ -1,19 +1,24 @@
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { getMyProfile } from "../../api/members";
 import { clearAccessToken } from "../../api/token";
 import { ChevronLeftIcon, ProfileIcon } from "../../components/common/Icon";
 import "./StudentPages.css";
 
 export default function StudentMyPage() {
   const navigate = useNavigate();
+  const [name, setName] = useState<string | null>(null);
+
+  useEffect(() => {
+    getMyProfile()
+      .then((profile) => setName(profile.name))
+      .catch(() => setName(null));
+  }, []);
 
   const handleLogout = () => {
     clearAccessToken();
     navigate("/");
   };
-  const savedProfile = localStorage.getItem("studentProfile");
-  const nickname = savedProfile
-    ? (JSON.parse(savedProfile) as { nickname?: string }).nickname ?? "김신촌"
-    : "김신촌";
 
   return (
     <section className="student-page mypage-main">
@@ -33,7 +38,7 @@ export default function StudentMyPage() {
       >
         <ProfileIcon width={40} height={40} />
       </button>
-      <p className="mypage-main__name">{nickname}</p>
+      <p className="mypage-main__name">{name ?? "..."}</p>
 
       <div className="mypage-main__menu">
         <button type="button" onClick={() => navigate("/student/mypage/edit")}>
