@@ -1,8 +1,9 @@
 import { useState, type FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthFrame from "../../components/common/AuthFrame";
-import { signupOwner } from "../../api/auth";
+import { login, signupOwner } from "../../api/auth";
 import { getApiErrorMessage } from "../../api/client";
+import { setAccessToken } from "../../api/token";
 import "./OwnerAuthForm.css";
 
 export default function OwnerSignupPage() {
@@ -33,6 +34,8 @@ export default function OwnerSignupPage() {
         name: nickname,
         businessName,
       });
+      const { accessToken } = await login({ email, password });
+      setAccessToken(accessToken);
       navigate("/owner/home");
     } catch (error) {
       setErrorMessage(

@@ -1,8 +1,14 @@
 import { useNavigate } from "react-router-dom";
+import { clearAccessToken } from "../../api/token";
 import "./StudentPages.css";
 
 export default function StudentMyPage() {
   const navigate = useNavigate();
+
+  const handleLogout = () => {
+    clearAccessToken();
+    navigate("/");
+  };
   const savedProfile = localStorage.getItem("studentProfile");
   const nickname = savedProfile
     ? (JSON.parse(savedProfile) as { nickname?: string }).nickname ?? "김신촌"
@@ -29,6 +35,11 @@ export default function StudentMyPage() {
         <button type="button">
           <span className="mypage__menu-icon">□</span>
           <span>나의 포트폴리오 관리</span>
+          <b>›</b>
+        </button>
+        <button type="button" onClick={handleLogout}>
+          <span className="mypage__menu-icon">⏻</span>
+          <span>로그아웃</span>
           <b>›</b>
         </button>
       </div>
