@@ -4,6 +4,7 @@ import OwnerSplashPage from "../pages/auth/OwnerSplashPage";
 import OwnerLoginPage from "../pages/auth/OwnerLoginPage";
 import OwnerSignupPage from "../pages/auth/OwnerSignupPage";
 import { studentRoutes } from "./studentRoutes";
+import RequireAuth from "./RequireAuth";
 import OwnerLayout from "../layouts/OwnerLayout";
 import OwnerHomePage from "../pages/owner/HomePage";
 import OwnerJobsPage from "../pages/owner/JobsPage";
@@ -27,23 +28,28 @@ export const router = createBrowserRouter([
 
   ...studentRoutes,
 
-  { path: "/owner/jobs/search", element: <JobsSearchPage /> },
-  { path: "/owner/jobs/new", element: <JobCreatePage /> },
-  { path: "/owner/jobs/new/processing", element: <JobProcessingPage /> },
-  { path: "/owner/jobs/:jobId/edit", element: <JobEditPage /> },
-  { path: "/owner/jobs/:jobId/completed", element: <JobCompletedPage /> },
-  { path: "/owner/mypage/account", element: <AccountPage /> },
-  { path: "/owner/chat/:roomId", element: <OwnerChatPage /> },
   {
-    path: "/owner",
-    element: <OwnerLayout />,
+    element: <RequireAuth />,
     children: [
-      { path: "home", element: <OwnerHomePage /> },
-      { path: "jobs", element: <OwnerJobsPage /> },
-      { path: "jobs/:jobId/applicants", element: <ApplicantListPage /> },
-      { path: "matching", element: <OwnerMatchingPage /> },
-      { path: "mypage", element: <OwnerMyPage /> },
-      { path: "mypage/posts", element: <MyPostsPage /> },
+      { path: "/owner/jobs/search", element: <JobsSearchPage /> },
+      { path: "/owner/jobs/new", element: <JobCreatePage /> },
+      { path: "/owner/jobs/new/processing", element: <JobProcessingPage /> },
+      { path: "/owner/jobs/:jobId/edit", element: <JobEditPage /> },
+      { path: "/owner/jobs/:jobId/completed", element: <JobCompletedPage /> },
+      { path: "/owner/mypage/account", element: <AccountPage /> },
+      { path: "/owner/chat/:roomId", element: <OwnerChatPage /> },
+      {
+        path: "/owner",
+        element: <OwnerLayout />,
+        children: [
+          { path: "home", element: <OwnerHomePage /> },
+          { path: "jobs", element: <OwnerJobsPage /> },
+          { path: "jobs/:jobId/applicants", element: <ApplicantListPage /> },
+          { path: "matching", element: <OwnerMatchingPage /> },
+          { path: "mypage", element: <OwnerMyPage /> },
+          { path: "mypage/posts", element: <MyPostsPage /> },
+        ],
+      },
     ],
   },
 ]);

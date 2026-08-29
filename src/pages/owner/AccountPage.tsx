@@ -1,11 +1,17 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { clearAccessToken } from "../../api/token";
 import "./JobCreatePage.css";
 import "./AccountPage.css";
 
 export default function AccountPage() {
   const navigate = useNavigate();
   const [isEditing, setIsEditing] = useState(false);
+
+  const handleLogout = () => {
+    clearAccessToken();
+    navigate("/");
+  };
 
   return (
     <div className="job-create">
@@ -52,6 +58,14 @@ export default function AccountPage() {
             수정하기
           </button>
         )}
+
+        <button
+          type="button"
+          className="job-create__submit account-page__logout"
+          onClick={handleLogout}
+        >
+          로그아웃
+        </button>
       </form>
     </div>
   );
