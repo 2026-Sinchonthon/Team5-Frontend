@@ -9,8 +9,12 @@ import JobDetailPage from "../pages/student/JobDetailPage";
 import JobApplyPage from "../pages/student/JobApplyPage";
 import StudentChatPage from "../pages/student/ChatPage";
 import OwnerLayout from "../layouts/OwnerLayout";
+import OwnerHomePage from "../pages/owner/HomePage";
+import OwnerJobsPage from "../pages/owner/JobsPage";
 import JobCreatePage from "../pages/owner/JobCreatePage";
 import ApplicantListPage from "../pages/owner/ApplicantListPage";
+import OwnerMatchingPage from "../pages/owner/MatchingPage";
+import OwnerMyPage from "../pages/owner/MyPage";
 import OwnerChatPage from "../pages/owner/ChatPage";
 
 export const router = createBrowserRouter([
@@ -32,8 +36,12 @@ export const router = createBrowserRouter([
     path: "/owner",
     element: <OwnerLayout />,
     children: [
+      { path: "home", element: <OwnerHomePage /> },
+      { path: "jobs", element: <OwnerJobsPage /> },
       { path: "jobs/new", element: <JobCreatePage /> },
       { path: "jobs/:jobId/applicants", element: <ApplicantListPage /> },
+      { path: "matching", element: <OwnerMatchingPage /> },
+      { path: "mypage", element: <OwnerMyPage /> },
       { path: "chat/:roomId", element: <OwnerChatPage /> },
     ],
   },
