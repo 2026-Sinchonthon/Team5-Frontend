@@ -31,6 +31,12 @@
   background: #eef2f6;
 }
 
+.student-home__school--placeholder {
+  display: grid;
+  place-items: center;
+  color: var(--color-primary);
+}
+
 .student-home__identity p {
   margin: 0;
   font-size: 15px;
