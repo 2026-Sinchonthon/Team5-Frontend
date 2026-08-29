@@ -40,6 +40,7 @@ export const router = createBrowserRouter([
   { path: "/owner/jobs/new/processing", element: <JobProcessingPage /> },
   { path: "/owner/jobs/:jobId/edit", element: <JobEditPage /> },
   { path: "/owner/mypage/account", element: <AccountPage /> },
+  { path: "/owner/chat/:roomId", element: <OwnerChatPage /> },
   {
     path: "/owner",
     element: <OwnerLayout />,
@@ -50,7 +51,6 @@ export const router = createBrowserRouter([
       { path: "matching", element: <OwnerMatchingPage /> },
       { path: "mypage", element: <OwnerMyPage /> },
       { path: "mypage/posts", element: <MyPostsPage /> },
-      { path: "chat/:roomId", element: <OwnerChatPage /> },
     ],
   },
 ]);
