@@ -1,13 +1,17 @@
+import { useNavigate } from "react-router-dom";
 import AuthFrame from "../../components/common/AuthFrame";
 import "./OwnerAuthForm.css";
 
 export default function OwnerSignupPage() {
+  const navigate = useNavigate();
+
   return (
     <AuthFrame title="회원가입">
       <form
         className="auth-form"
         onSubmit={(event) => {
           event.preventDefault();
+          navigate("/owner/home");
         }}
       >
         <div className="auth-field">

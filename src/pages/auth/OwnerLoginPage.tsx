@@ -11,6 +11,7 @@ export default function OwnerLoginPage() {
         className="auth-form"
         onSubmit={(event) => {
           event.preventDefault();
+          navigate("/owner/home");
         }}
       >
         <div className="auth-field">

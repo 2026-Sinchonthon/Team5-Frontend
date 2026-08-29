@@ -1,0 +1,11 @@
+.account-page__back {
+  margin-bottom: 24px;
+}
+
+.account-page__avatar {
+  width: 110px;
+  height: 110px;
+  margin: 0 auto 32px;
+  border-radius: 50%;
+  background: #d9d9d9;
+}

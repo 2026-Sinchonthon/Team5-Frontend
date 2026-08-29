@@ -1,14 +1,11 @@
-import type { FormEvent } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./JobCreatePage.css";
+import "./JobEditPage.css";
 
-export default function JobCreatePage() {
+export default function JobEditPage() {
   const navigate = useNavigate();
-
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    navigate("/owner/jobs/new/processing");
-  };
+  const [isConfirming, setIsConfirming] = useState(false);
 
   return (
     <div className="job-create">
@@ -24,7 +21,10 @@ export default function JobCreatePage() {
         <h1 className="job-create__title">글 쓰기</h1>
       </div>
 
-      <form className="job-create__form" onSubmit={handleSubmit}>
+      <form
+        className="job-create__form"
+        onSubmit={(event) => event.preventDefault()}
+      >
         <label className="job-create__image-upload">
           <input type="file" accept="image/*" hidden />
           <svg
@@ -69,14 +69,29 @@ export default function JobCreatePage() {
         <div className="job-create__toggle-row">
           <span>포트폴리오 이미지 제출 필수로 받기</span>
           <label className="job-create__toggle">
-            <input type="checkbox" />
+            <input type="checkbox" defaultChecked />
             <span className="job-create__toggle-slider" />
           </label>
         </div>
 
-        <button type="submit" className="job-create__submit">
-          완료
-        </button>
+        {isConfirming ? (
+          <div className="job-edit__confirm-buttons">
+            <button type="button" className="job-edit__delete">
+              삭제
+            </button>
+            <button type="button" className="job-create__submit">
+              완료
+            </button>
+          </div>
+        ) : (
+          <button
+            type="button"
+            className="job-create__submit"
+            onClick={() => setIsConfirming(true)}
+          >
+            수정하기
+          </button>
+        )}
       </form>
     </div>
   );

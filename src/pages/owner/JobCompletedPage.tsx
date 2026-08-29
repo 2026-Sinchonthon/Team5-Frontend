@@ -1,14 +1,8 @@
-import type { FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import "./JobCreatePage.css";
 
-export default function JobCreatePage() {
+export default function JobCompletedPage() {
   const navigate = useNavigate();
-
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    navigate("/owner/jobs/new/processing");
-  };
 
   return (
     <div className="job-create">
@@ -24,9 +18,8 @@ export default function JobCreatePage() {
         <h1 className="job-create__title">글 쓰기</h1>
       </div>
 
-      <form className="job-create__form" onSubmit={handleSubmit}>
-        <label className="job-create__image-upload">
-          <input type="file" accept="image/*" hidden />
+      <div className="job-create__form">
+        <div className="job-create__image-upload" aria-hidden="true">
           <svg
             width="22"
             height="22"
@@ -41,27 +34,27 @@ export default function JobCreatePage() {
             <circle cx="8.5" cy="8.5" r="1.5" />
             <path d="M21 15l-5-5L5 21" />
           </svg>
-        </label>
+        </div>
 
         <div className="job-create__field">
           <label htmlFor="title">글 제목</label>
-          <input id="title" type="text" />
+          <input id="title" type="text" disabled />
         </div>
 
         <div className="job-create__field">
           <label htmlFor="description">자세한 설명</label>
-          <textarea id="description" rows={5} />
+          <textarea id="description" rows={5} disabled />
         </div>
 
         <div className="job-create__field">
           <label htmlFor="deadline">마감 기한</label>
-          <input id="deadline" type="date" />
+          <input id="deadline" type="date" disabled />
         </div>
 
         <div className="job-create__field">
           <label htmlFor="reward">사례금</label>
           <div className="job-create__input-with-suffix">
-            <input id="reward" type="number" inputMode="numeric" />
+            <input id="reward" type="number" inputMode="numeric" disabled />
             <span>원</span>
           </div>
         </div>
@@ -69,15 +62,15 @@ export default function JobCreatePage() {
         <div className="job-create__toggle-row">
           <span>포트폴리오 이미지 제출 필수로 받기</span>
           <label className="job-create__toggle">
-            <input type="checkbox" />
+            <input type="checkbox" defaultChecked disabled />
             <span className="job-create__toggle-slider" />
           </label>
         </div>
 
-        <button type="submit" className="job-create__submit">
-          완료
+        <button type="button" className="job-create__submit">
+          삭제하기
         </button>
-      </form>
+      </div>
     </div>
   );
 }

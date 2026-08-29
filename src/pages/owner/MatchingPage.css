@@ -1,0 +1,45 @@
+.matching-page__history {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.matching-page__history-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.matching-page__history-image {
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  border-radius: 6px;
+  background: #d9d9d9;
+}
+
+.matching-page__history-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.matching-page__history-title {
+  margin: 0;
+  color: #1a1a1a;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.matching-page__history-status {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: #d9d9d9;
+  color: #555;
+  font-size: 12px;
+  font-weight: 600;
+}
