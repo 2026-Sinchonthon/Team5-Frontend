@@ -2,6 +2,7 @@ import { useState, type FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthFrame from "../../components/common/AuthFrame";
 import { login } from "../../api/auth";
+import { getApiErrorMessage } from "../../api/client";
 import { setAccessToken } from "../../api/token";
 import "./OwnerAuthForm.css";
 
@@ -21,8 +22,13 @@ export default function OwnerLoginPage() {
       const { accessToken } = await login({ email, password });
       setAccessToken(accessToken);
       navigate("/owner/home");
-    } catch {
-      setErrorMessage("이메일 또는 비밀번호가 올바르지 않습니다.");
+    } catch (error) {
+      setErrorMessage(
+        getApiErrorMessage(
+          error,
+          "이메일 또는 비밀번호가 올바르지 않습니다.",
+        ),
+      );
     } finally {
       setIsSubmitting(false);
     }

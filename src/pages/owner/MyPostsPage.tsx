@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getMyJobPosts } from "../../api/jobPosts";
+import { getApiErrorMessage } from "../../api/client";
 import type { MyJobPost } from "../../api/types";
 import "./JobsPage.css";
 import "./MyPostsPage.css";
@@ -20,8 +21,11 @@ export default function MyPostsPage() {
       .then((data) => {
         if (!cancelled) setPosts(data);
       })
-      .catch(() => {
-        if (!cancelled) setErrorMessage("게시글을 불러오지 못했습니다.");
+      .catch((error) => {
+        if (!cancelled)
+          setErrorMessage(
+            getApiErrorMessage(error, "게시글을 불러오지 못했습니다."),
+          );
       })
       .finally(() => {
         if (!cancelled) setIsLoading(false);

@@ -1,10 +1,11 @@
 import type { JobPostCategory } from "../constants/jobCategories";
 
 export interface ApiResponse<T> {
-  success: boolean;
-  code: number;
+  isSuccess: boolean;
+  code: string;
   message: string;
-  data: T;
+  result: T;
+  error: { message: string } | null;
 }
 
 export type MemberRole = "STUDENT" | "OWNER";

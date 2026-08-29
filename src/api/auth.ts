@@ -13,7 +13,7 @@ export async function login(payload: LoginRequest): Promise<LoginResponse> {
     "/auth/login",
     payload,
   );
-  return data.data;
+  return data.result;
 }
 
 export async function signupOwner(
@@ -23,7 +23,7 @@ export async function signupOwner(
     "/auth/signup/owner",
     payload,
   );
-  return data.data;
+  return data.result;
 }
 
 export async function signupStudent(payload: SignupStudentRequest) {
@@ -31,5 +31,5 @@ export async function signupStudent(payload: SignupStudentRequest) {
     "/auth/signup/student",
     payload,
   );
-  return data.data;
+  return data.result;
 }

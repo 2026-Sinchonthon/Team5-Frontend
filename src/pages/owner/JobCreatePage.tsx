@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import { createJobPost } from "../../api/jobPosts";
+import { getApiErrorMessage } from "../../api/client";
 import {
   JOB_CATEGORY_OPTIONS,
   type JobPostCategory,
@@ -37,8 +38,13 @@ export default function JobCreatePage() {
         deadline: `${deadline}T23:59:59+09:00`,
       });
       navigate("/owner/jobs/new/processing");
-    } catch {
-      setErrorMessage("공고 등록에 실패했습니다. 잠시 후 다시 시도해주세요.");
+    } catch (error) {
+      setErrorMessage(
+        getApiErrorMessage(
+          error,
+          "공고 등록에 실패했습니다. 잠시 후 다시 시도해주세요.",
+        ),
+      );
     } finally {
       setIsSubmitting(false);
     }

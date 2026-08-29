@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { listJobPosts } from "../../api/jobPosts";
+import { getApiErrorMessage } from "../../api/client";
 import type { JobPostSummary } from "../../api/types";
 import { jobCategoryLabel, type JobPostCategory } from "../../constants/jobCategories";
 import "./JobsPage.css";
@@ -46,8 +47,11 @@ export default function JobsPage() {
       .then((response) => {
         if (!cancelled) setJobs(response.content);
       })
-      .catch(() => {
-        if (!cancelled) setErrorMessage("공고 목록을 불러오지 못했습니다.");
+      .catch((error) => {
+        if (!cancelled)
+          setErrorMessage(
+            getApiErrorMessage(error, "공고 목록을 불러오지 못했습니다."),
+          );
       })
       .finally(() => {
         if (!cancelled) setIsLoading(false);

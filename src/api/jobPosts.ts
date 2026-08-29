@@ -17,20 +17,20 @@ export async function listJobPosts(
     "/job-posts",
     { params },
   );
-  return data.data;
+  return data.result;
 }
 
 export async function getJobPost(jobPostId: number): Promise<JobPostDetail> {
   const { data } = await apiClient.get<ApiResponse<JobPostDetail>>(
     `/job-posts/${jobPostId}`,
   );
-  return data.data;
+  return data.result;
 }
 
 export async function getMyJobPosts(): Promise<MyJobPost[]> {
   const { data } =
     await apiClient.get<ApiResponse<MyJobPost[]>>("/job-posts/me");
-  return data.data;
+  return data.result;
 }
 
 export async function createJobPost(
@@ -40,7 +40,7 @@ export async function createJobPost(
     "/job-posts",
     payload,
   );
-  return data.data;
+  return data.result;
 }
 
 export async function updateJobPost(
@@ -51,7 +51,7 @@ export async function updateJobPost(
     `/job-posts/${jobPostId}`,
     payload,
   );
-  return data.data;
+  return data.result;
 }
 
 export async function deleteJobPost(jobPostId: number): Promise<void> {

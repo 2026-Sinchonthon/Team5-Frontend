@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { deleteJobPost, getJobPost } from "../../api/jobPosts";
+import { getApiErrorMessage } from "../../api/client";
 import { jobCategoryLabel } from "../../constants/jobCategories";
 import "./JobCreatePage.css";
 
@@ -30,8 +31,11 @@ export default function JobCompletedPage() {
         setDeadline(job.deadline.slice(0, 10));
         setBudget(String(job.budget));
       })
-      .catch(() => {
-        if (!cancelled) setErrorMessage("공고 정보를 불러오지 못했습니다.");
+      .catch((error) => {
+        if (!cancelled)
+          setErrorMessage(
+            getApiErrorMessage(error, "공고 정보를 불러오지 못했습니다."),
+          );
       })
       .finally(() => {
         if (!cancelled) setIsLoading(false);
@@ -50,8 +54,13 @@ export default function JobCompletedPage() {
     try {
       await deleteJobPost(Number(jobId));
       navigate("/owner/mypage/posts");
-    } catch {
-      setErrorMessage("삭제에 실패했습니다. 잠시 후 다시 시도해주세요.");
+    } catch (error) {
+      setErrorMessage(
+        getApiErrorMessage(
+          error,
+          "삭제에 실패했습니다. 잠시 후 다시 시도해주세요.",
+        ),
+      );
     } finally {
       setIsDeleting(false);
     }

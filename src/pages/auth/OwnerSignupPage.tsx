@@ -2,6 +2,7 @@ import { useState, type FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthFrame from "../../components/common/AuthFrame";
 import { signupOwner } from "../../api/auth";
+import { getApiErrorMessage } from "../../api/client";
 import "./OwnerAuthForm.css";
 
 export default function OwnerSignupPage() {
@@ -33,8 +34,13 @@ export default function OwnerSignupPage() {
         businessName,
       });
       navigate("/owner/home");
-    } catch {
-      setErrorMessage("회원가입에 실패했습니다. 잠시 후 다시 시도해주세요.");
+    } catch (error) {
+      setErrorMessage(
+        getApiErrorMessage(
+          error,
+          "회원가입에 실패했습니다. 잠시 후 다시 시도해주세요.",
+        ),
+      );
     } finally {
       setIsSubmitting(false);
     }
