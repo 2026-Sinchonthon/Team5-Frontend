@@ -1,8 +1,9 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./JobsPage.css";
 
 const SORT_OPTIONS = ["최신순", "거리순", "사례금 높은 순"];
+const UPLOAD_TOAST_DURATION_MS = 2000;
 
 const MOCK_JOBS = [
   { id: "1", name: "식당 이름" },
@@ -10,9 +11,28 @@ const MOCK_JOBS = [
   { id: "3", name: "식당 이름" },
 ];
 
+interface JobsPageLocationState {
+  justUploaded?: boolean;
+}
+
 export default function JobsPage() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [selectedSort, setSelectedSort] = useState(SORT_OPTIONS[0]);
+  const [showUploadToast, setShowUploadToast] = useState(
+    Boolean((location.state as JobsPageLocationState | null)?.justUploaded),
+  );
+
+  useEffect(() => {
+    if (!showUploadToast) return;
+
+    navigate(location.pathname, { replace: true, state: null });
+    const timer = setTimeout(
+      () => setShowUploadToast(false),
+      UPLOAD_TOAST_DURATION_MS,
+    );
+    return () => clearTimeout(timer);
+  }, [showUploadToast]);
 
   return (
     <div className="owner-jobs">
@@ -50,6 +70,12 @@ export default function JobsPage() {
           </li>
         ))}
       </ul>
+
+      {showUploadToast && (
+        <div className="owner-jobs__toast" role="status">
+          게시글 업로드 완료!
+        </div>
+      )}
     </div>
   );
 }
