@@ -1,15 +1,11 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import { listJobPosts } from "../../api/jobPosts";
+import type { JobPostSummary } from "../../api/types";
+import { jobCategoryLabel, type JobPostCategory } from "../../constants/jobCategories";
 import "./JobsPage.css";
 
 const UPLOAD_TOAST_DURATION_MS = 2000;
-
-const MOCK_JOBS = [
-  { id: "1", name: "식당 이름", category: "SNS 운영" },
-  { id: "2", name: "식당 이름", category: "이미지 제작" },
-  { id: "3", name: "식당 이름", category: "웹사이트 개발" },
-  { id: "4", name: "식당 이름", category: "SNS 운영" },
-];
 
 interface JobsPageLocationState {
   justUploaded?: boolean;
@@ -19,10 +15,13 @@ export default function JobsPage() {
   const navigate = useNavigate();
   const location = useLocation();
   const [searchParams] = useSearchParams();
-  const selectedCategory = searchParams.get("category");
+  const selectedCategory = searchParams.get("category") as JobPostCategory | null;
   const [showUploadToast, setShowUploadToast] = useState(
     Boolean((location.state as JobsPageLocationState | null)?.justUploaded),
   );
+  const [jobs, setJobs] = useState<JobPostSummary[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   useEffect(() => {
     if (!showUploadToast) return;
@@ -38,9 +37,26 @@ export default function JobsPage() {
     return () => clearTimeout(timer);
   }, [showUploadToast]);
 
-  const jobs = selectedCategory
-    ? MOCK_JOBS.filter((job) => job.category === selectedCategory)
-    : MOCK_JOBS;
+  useEffect(() => {
+    let cancelled = false;
+    setIsLoading(true);
+    setErrorMessage(null);
+
+    listJobPosts(selectedCategory ? { category: selectedCategory } : {})
+      .then((response) => {
+        if (!cancelled) setJobs(response.content);
+      })
+      .catch(() => {
+        if (!cancelled) setErrorMessage("공고 목록을 불러오지 못했습니다.");
+      })
+      .finally(() => {
+        if (!cancelled) setIsLoading(false);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [selectedCategory]);
 
   return (
     <div className="owner-jobs">
@@ -81,32 +97,35 @@ export default function JobsPage() {
           </svg>
         </button>
         {selectedCategory && (
-          <span className="owner-jobs__filter-chip">{selectedCategory}</span>
+          <span className="owner-jobs__filter-chip">
+            {jobCategoryLabel(selectedCategory)}
+          </span>
         )}
       </div>
 
-      <ul className="owner-jobs__list">
-        {jobs.map((job) => {
-          const isMine = job.id === "1";
+      {isLoading && <p className="owner-jobs__status">불러오는 중...</p>}
+      {!isLoading && errorMessage && (
+        <p className="owner-jobs__status">{errorMessage}</p>
+      )}
+      {!isLoading && !errorMessage && jobs.length === 0 && (
+        <p className="owner-jobs__status">등록된 공고가 없습니다.</p>
+      )}
 
-          return (
-            <li key={job.id}>
-              <button
-                type="button"
-                className="owner-jobs__item"
-                disabled={!isMine}
-                onClick={
-                  isMine
-                    ? () => navigate(`/owner/jobs/${job.id}/edit`)
-                    : undefined
-                }
-              >
-                <div className="owner-jobs__thumbnail" />
-                <p className="owner-jobs__name">{job.name}</p>
-              </button>
-            </li>
-          );
-        })}
+      <ul className="owner-jobs__list">
+        {jobs.map((job) => (
+          <li key={job.jobPostId} className="owner-jobs__item">
+            {job.thumbnailImageUrl ? (
+              <img
+                className="owner-jobs__thumbnail"
+                src={job.thumbnailImageUrl}
+                alt=""
+              />
+            ) : (
+              <div className="owner-jobs__thumbnail" />
+            )}
+            <p className="owner-jobs__name">{job.title}</p>
+          </li>
+        ))}
       </ul>
 
       {showUploadToast && (

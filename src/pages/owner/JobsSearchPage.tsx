@@ -1,17 +1,21 @@
 import { useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import {
+  JOB_CATEGORY_OPTIONS,
+  jobCategoryLabel,
+  type JobPostCategory,
+} from "../../constants/jobCategories";
 import "./JobsSearchPage.css";
-
-const CATEGORIES = ["SNS 운영", "이미지 제작", "웹사이트 개발"];
 
 export default function JobsSearchPage() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(
-    searchParams.get("category"),
-  );
+  const [selectedCategory, setSelectedCategory] =
+    useState<JobPostCategory | null>(
+      searchParams.get("category") as JobPostCategory | null,
+    );
 
-  const toggleCategory = (category: string) => {
+  const toggleCategory = (category: JobPostCategory) => {
     setSelectedCategory((current) =>
       current === category ? null : category,
     );
@@ -39,7 +43,7 @@ export default function JobsSearchPage() {
       <div className="jobs-search__bar">
         {selectedCategory && (
           <span className="jobs-search__tag">
-            {selectedCategory.replace(" ", "")}
+            {jobCategoryLabel(selectedCategory).replace(" ", "")}
             <button
               type="button"
               aria-label="필터 해제"
@@ -73,18 +77,18 @@ export default function JobsSearchPage() {
 
       <h2 className="jobs-search__heading">카테고리 필터</h2>
       <div className="jobs-search__categories">
-        {CATEGORIES.map((category) => (
+        {JOB_CATEGORY_OPTIONS.map((option) => (
           <button
-            key={category}
+            key={option.value}
             type="button"
             className={
-              category === selectedCategory
+              option.value === selectedCategory
                 ? "jobs-search__category jobs-search__category--active"
                 : "jobs-search__category"
             }
-            onClick={() => toggleCategory(category)}
+            onClick={() => toggleCategory(option.value)}
           >
-            {category}
+            {option.label}
           </button>
         ))}
       </div>

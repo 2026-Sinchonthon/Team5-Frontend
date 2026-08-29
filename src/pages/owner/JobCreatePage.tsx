@@ -1,13 +1,47 @@
-import type { FormEvent } from "react";
+import { useState, type FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
+import { createJobPost } from "../../api/jobPosts";
+import {
+  JOB_CATEGORY_OPTIONS,
+  type JobPostCategory,
+} from "../../constants/jobCategories";
 import "./JobCreatePage.css";
 
 export default function JobCreatePage() {
   const navigate = useNavigate();
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [category, setCategory] = useState<JobPostCategory | null>(null);
+  const [deadline, setDeadline] = useState("");
+  const [budget, setBudget] = useState("");
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    navigate("/owner/jobs/new/processing");
+
+    if (!category) {
+      setErrorMessage("카테고리를 선택해주세요.");
+      return;
+    }
+
+    setErrorMessage(null);
+    setIsSubmitting(true);
+
+    try {
+      await createJobPost({
+        title,
+        description,
+        category,
+        budget: Number(budget),
+        deadline: `${deadline}T23:59:59+09:00`,
+      });
+      navigate("/owner/jobs/new/processing");
+    } catch {
+      setErrorMessage("공고 등록에 실패했습니다. 잠시 후 다시 시도해주세요.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -45,23 +79,68 @@ export default function JobCreatePage() {
 
         <div className="job-create__field">
           <label htmlFor="title">글 제목</label>
-          <input id="title" type="text" />
+          <input
+            id="title"
+            type="text"
+            value={title}
+            onChange={(event) => setTitle(event.target.value)}
+            required
+          />
         </div>
 
         <div className="job-create__field">
           <label htmlFor="description">자세한 설명</label>
-          <textarea id="description" rows={5} />
+          <textarea
+            id="description"
+            rows={5}
+            value={description}
+            onChange={(event) => setDescription(event.target.value)}
+            required
+          />
+        </div>
+
+        <div className="job-create__field">
+          <label>카테고리</label>
+          <div className="job-create__category-options">
+            {JOB_CATEGORY_OPTIONS.map((option) => (
+              <button
+                key={option.value}
+                type="button"
+                className={
+                  option.value === category
+                    ? "job-create__category-option job-create__category-option--active"
+                    : "job-create__category-option"
+                }
+                onClick={() => setCategory(option.value)}
+              >
+                {option.label}
+              </button>
+            ))}
+          </div>
         </div>
 
         <div className="job-create__field">
           <label htmlFor="deadline">마감 기한</label>
-          <input id="deadline" type="date" />
+          <input
+            id="deadline"
+            type="date"
+            value={deadline}
+            onChange={(event) => setDeadline(event.target.value)}
+            required
+          />
         </div>
 
         <div className="job-create__field">
           <label htmlFor="reward">사례금</label>
           <div className="job-create__input-with-suffix">
-            <input id="reward" type="number" inputMode="numeric" />
+            <input
+              id="reward"
+              type="number"
+              inputMode="numeric"
+              value={budget}
+              onChange={(event) => setBudget(event.target.value)}
+              required
+            />
             <span>원</span>
           </div>
         </div>
@@ -74,8 +153,10 @@ export default function JobCreatePage() {
           </label>
         </div>
 
-        <button type="submit" className="job-create__submit">
-          완료
+        {errorMessage && <p className="job-create__error">{errorMessage}</p>}
+
+        <button type="submit" className="job-create__submit" disabled={isSubmitting}>
+          {isSubmitting ? "등록 중..." : "완료"}
         </button>
       </form>
     </div>
