@@ -148,6 +148,16 @@ export interface JobPostListParams {
   sort?: "LATEST" | "DEADLINE" | "BUDGET_HIGH";
 }
 
+export interface RefineJobPostRequest {
+  rawRequest: string;
+  category: JobPostCategory;
+}
+
+export interface RefineJobPostResponse {
+  description: string;
+  rawRequest: string;
+}
+
 export interface CreateJobPostRequest {
   title: string;
   description: string;

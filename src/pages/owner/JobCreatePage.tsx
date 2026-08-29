@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
-import { createJobPost } from "../../api/jobPosts";
+import { createJobPost, refineJobPost } from "../../api/jobPosts";
 import { getApiErrorMessage } from "../../api/client";
 import { CameraIcon, ChevronLeftIcon } from "../../components/common/Icon";
 import {
@@ -31,9 +31,15 @@ export default function JobCreatePage() {
     setIsSubmitting(true);
 
     try {
+      const refined = await refineJobPost({
+        rawRequest: description,
+        category,
+      });
+
       await createJobPost({
         title,
-        description,
+        description: refined.description,
+        rawRequest: refined.rawRequest,
         category,
         budget: Number(budget),
         deadline: `${deadline}T23:59:59+09:00`,
