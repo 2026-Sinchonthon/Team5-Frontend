@@ -15,7 +15,7 @@ export default function RoleSelectPage() {
         <button
           type="button"
           className="role-select__button"
-          onClick={() => navigate("/login/owner")}
+          onClick={() => navigate("/splash/owner")}
         >
           사장님
         </button>

@@ -10,7 +10,7 @@ export default function SignupPage() {
           <input
             id="email"
             type="email"
-            placeholder="학교 이메일로 입력해주세요"
+            placeholder="이메일을 입력해주세요"
           />
         </div>
         <div className="auth-field">
