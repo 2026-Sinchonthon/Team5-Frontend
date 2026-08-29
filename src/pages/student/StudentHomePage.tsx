@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { studentJobs } from "../../data/studentJobs";
 import "./StudentPages.css";
 
-export default function HomePage() {
+export default function StudentHomePage() {
   const navigate = useNavigate();
   const activeJob = studentJobs[0];
   const latestJob = studentJobs[1];

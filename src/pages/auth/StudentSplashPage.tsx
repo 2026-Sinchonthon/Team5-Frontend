@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthFrame from "../../components/common/AuthFrame";
-import "./SplashPage.css";
+import "./StudentSplashPage.css";
 
 const SPLASH_DURATION_MS = 1800;
 

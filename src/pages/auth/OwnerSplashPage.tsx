@@ -1,20 +1,19 @@
 import { useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import AuthFrame from "../../components/common/AuthFrame";
-import "./SplashPage.css";
+import "./OwnerSplashPage.css";
 
 const SPLASH_DURATION_MS = 2000;
 
-export default function SplashPage() {
+export default function OwnerSplashPage() {
   const navigate = useNavigate();
-  const { role } = useParams();
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigate(`/login/${role}`, { replace: true });
+      navigate("/login/owner", { replace: true });
     }, SPLASH_DURATION_MS);
     return () => clearTimeout(timer);
-  }, [navigate, role]);
+  }, [navigate]);
 
   return (
     <AuthFrame>

@@ -1,8 +1,8 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { studentJobs } from "../../data/studentJobs";
-import "./Jobs.css";
+import "./StudentJobs.css";
 
-export default function JobDetailPage() {
+export default function StudentJobDetailPage() {
   const navigate = useNavigate();
   const { jobId } = useParams();
   const job = studentJobs.find((item) => item.id === Number(jobId));

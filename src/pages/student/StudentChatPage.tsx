@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./ChatPage.css";
+import "./StudentChatPage.css";
 
 interface ChatMessage {
   id: number;
@@ -15,7 +15,7 @@ const initialMessages: ChatMessage[] = [
   { id: 4, sender: "student", text: "네, 확인했습니다! 자료 보내주시면 작업 시작할게요." },
 ];
 
-export default function ChatPage() {
+export default function StudentChatPage() {
   const navigate = useNavigate();
   const [messages, setMessages] = useState<ChatMessage[]>(initialMessages);
   const [message, setMessage] = useState("");

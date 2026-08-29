@@ -19,7 +19,7 @@ function loadProfile(): StudentProfile {
   return savedProfile ? JSON.parse(savedProfile) as StudentProfile : initialProfile;
 }
 
-export default function MyPageEditPage() {
+export default function StudentMyPageEditPage() {
   const navigate = useNavigate();
   const [isEditing, setIsEditing] = useState(false);
   const [profile, setProfile] = useState<StudentProfile>(loadProfile);

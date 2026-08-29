@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import "./StudentPages.css";
 
-export default function MyPage() {
+export default function StudentMyPage() {
   const navigate = useNavigate();
   const savedProfile = localStorage.getItem("studentProfile");
   const nickname = savedProfile

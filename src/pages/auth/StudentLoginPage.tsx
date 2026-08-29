@@ -1,10 +1,9 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import AuthFrame from "../../components/common/AuthFrame";
-import "./AuthForm.css";
+import "./StudentAuthForm.css";
 
-export default function LoginPage() {
+export default function StudentLoginPage() {
   const navigate = useNavigate();
-  const { role } = useParams();
 
   return (
     <AuthFrame title="로그인">
@@ -12,7 +11,7 @@ export default function LoginPage() {
         className="auth-form"
         onSubmit={(event) => {
           event.preventDefault();
-          if (role === "student") navigate("/student/splash");
+          navigate("/student/splash");
         }}
       >
         <div className="auth-field">
@@ -32,7 +31,7 @@ export default function LoginPage() {
         <button
           type="button"
           className="auth-switch"
-          onClick={() => navigate(`/signup/${role}`)}
+          onClick={() => navigate("/signup/student")}
         >
           회원가입
         </button>

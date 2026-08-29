@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { studentJobs } from "../../data/studentJobs";
 import "./StudentPages.css";
 
-export default function MatchesPage() {
+export default function StudentMatchesPage() {
   const navigate = useNavigate();
   const activeJob = studentJobs[0];
   const matchHistory = [

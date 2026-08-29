@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { studentJobs } from "../../data/studentJobs";
-import "./Jobs.css";
+import "./StudentJobs.css";
 
-export default function JobListPage() {
+export default function StudentJobListPage() {
   const navigate = useNavigate();
   const location = useLocation();
   const [showSubmittedToast, setShowSubmittedToast] = useState(

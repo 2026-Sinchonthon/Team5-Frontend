@@ -1,9 +1,9 @@
 import { useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { studentJobs } from "../../data/studentJobs";
-import "./Jobs.css";
+import "./StudentJobs.css";
 
-export default function JobApplyPage() {
+export default function StudentJobApplyPage() {
   const navigate = useNavigate();
   const { jobId } = useParams();
   const fileInputRef = useRef<HTMLInputElement>(null);
