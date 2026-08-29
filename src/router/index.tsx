@@ -32,13 +32,13 @@ export const router = createBrowserRouter([
       { path: "chat/:roomId", element: <StudentChatPage /> },
     ],
   },
+  { path: "/owner/jobs/new", element: <JobCreatePage /> },
   {
     path: "/owner",
     element: <OwnerLayout />,
     children: [
       { path: "home", element: <OwnerHomePage /> },
       { path: "jobs", element: <OwnerJobsPage /> },
-      { path: "jobs/new", element: <JobCreatePage /> },
       { path: "jobs/:jobId/applicants", element: <ApplicantListPage /> },
       { path: "matching", element: <OwnerMatchingPage /> },
       { path: "mypage", element: <OwnerMyPage /> },
