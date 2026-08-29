@@ -63,12 +63,27 @@ export default function JobsPage() {
       </div>
 
       <ul className="owner-jobs__list">
-        {MOCK_JOBS.map((job) => (
-          <li key={job.id} className="owner-jobs__item">
-            <div className="owner-jobs__thumbnail" />
-            <p className="owner-jobs__name">{job.name}</p>
-          </li>
-        ))}
+        {MOCK_JOBS.map((job, index) => {
+          const isMine = index === 0;
+
+          return (
+            <li key={job.id}>
+              <button
+                type="button"
+                className="owner-jobs__item"
+                disabled={!isMine}
+                onClick={
+                  isMine
+                    ? () => navigate(`/owner/jobs/${job.id}/edit`)
+                    : undefined
+                }
+              >
+                <div className="owner-jobs__thumbnail" />
+                <p className="owner-jobs__name">{job.name}</p>
+              </button>
+            </li>
+          );
+        })}
       </ul>
 
       {showUploadToast && (
