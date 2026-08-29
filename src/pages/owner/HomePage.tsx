@@ -1,11 +1,20 @@
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import schoolLogo from "../../assets/design/school-logo.png";
 import jobHero from "../../assets/design/job-hero.png";
 import { BellIcon, ClockIcon } from "../../components/common/Icon";
+import { getMyProfile } from "../../api/members";
 import "./HomePage.css";
 
 export default function HomePage() {
   const navigate = useNavigate();
+  const [name, setName] = useState<string | null>(null);
+
+  useEffect(() => {
+    getMyProfile()
+      .then((profile) => setName(profile.name))
+      .catch(() => setName(null));
+  }, []);
 
   return (
     <div className="owner-home">
@@ -13,7 +22,7 @@ export default function HomePage() {
         <div className="owner-home__identity">
           <img className="owner-home__avatar" src={schoolLogo} alt="사이트 로고" />
           <p className="owner-home__greeting">
-            <strong>김사장</strong>님, 환영합니다!
+            <strong>{name ?? "..."}</strong>님, 환영합니다!
           </p>
         </div>
         <button type="button" className="owner-home__bell" aria-label="알림">
