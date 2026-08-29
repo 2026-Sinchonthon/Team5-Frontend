@@ -12,6 +12,7 @@ import JobsSearchPage from "../pages/owner/JobsSearchPage";
 import JobCreatePage from "../pages/owner/JobCreatePage";
 import JobProcessingPage from "../pages/owner/JobProcessingPage";
 import JobEditPage from "../pages/owner/JobEditPage";
+import JobDetailPage from "../pages/owner/JobDetailPage";
 import JobCompletedPage from "../pages/owner/JobCompletedPage";
 import ApplicantListPage from "../pages/owner/ApplicantListPage";
 import OwnerMatchingPage from "../pages/owner/MatchingPage";
@@ -34,6 +35,7 @@ export const router = createBrowserRouter([
       { path: "/owner/jobs/search", element: <JobsSearchPage /> },
       { path: "/owner/jobs/new", element: <JobCreatePage /> },
       { path: "/owner/jobs/new/processing", element: <JobProcessingPage /> },
+      { path: "/owner/jobs/:jobId", element: <JobDetailPage /> },
       { path: "/owner/jobs/:jobId/edit", element: <JobEditPage /> },
       { path: "/owner/jobs/:jobId/completed", element: <JobCompletedPage /> },
       { path: "/owner/mypage/account", element: <AccountPage /> },
