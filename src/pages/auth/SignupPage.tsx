@@ -1,16 +1,27 @@
+import { useNavigate, useParams } from "react-router-dom";
 import AuthFrame from "../../components/common/AuthFrame";
 import "./AuthForm.css";
 
 export default function SignupPage() {
+  const navigate = useNavigate();
+  const { role } = useParams();
+
   return (
     <AuthFrame title="회원가입">
-      <form className="auth-form" onSubmit={(e) => e.preventDefault()}>
+      <form
+        className="auth-form"
+        onSubmit={(event) => {
+          event.preventDefault();
+          if (role === "student") navigate("/student/splash");
+        }}
+      >
         <div className="auth-field">
           <label htmlFor="email">이메일</label>
           <input
             id="email"
-            type="email"
+            type="text"
             placeholder="이메일을 입력해주세요"
+            required
           />
         </div>
         <div className="auth-field">
@@ -19,6 +30,7 @@ export default function SignupPage() {
             id="password"
             type="password"
             placeholder="비밀번호를 입력하세요"
+            required
           />
         </div>
         <div className="auth-field">
@@ -27,11 +39,12 @@ export default function SignupPage() {
             id="passwordConfirm"
             type="password"
             placeholder="동일한 비밀번호를 입력하세요"
+            required
           />
         </div>
         <div className="auth-field">
           <label htmlFor="nickname">닉네임</label>
-          <input id="nickname" type="text" placeholder="닉네임을 입력하세요" />
+          <input id="nickname" type="text" placeholder="닉네임을 입력하세요" required />
         </div>
 
         <button type="submit" className="auth-submit">

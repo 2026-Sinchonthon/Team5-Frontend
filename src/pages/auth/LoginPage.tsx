@@ -8,19 +8,27 @@ export default function LoginPage() {
 
   return (
     <AuthFrame title="로그인">
-      <form className="auth-form" onSubmit={(e) => e.preventDefault()}>
+      <form
+        className="auth-form"
+        onSubmit={(event) => {
+          event.preventDefault();
+          if (role === "student") navigate("/student/splash");
+        }}
+      >
         <div className="auth-field">
           <label htmlFor="email">이메일</label>
-          <input id="email" type="email" placeholder="이메일을 입력해주세요" />
+          <input id="email" type="text" placeholder="이메일을 입력해주세요" required />
         </div>
         <div className="auth-field">
           <label htmlFor="password">비밀번호</label>
-          <input id="password" type="password" placeholder="비밀번호를 입력하세요" />
+          <input id="password" type="password" placeholder="비밀번호를 입력하세요" required />
         </div>
 
-        <button type="submit" className="auth-submit">
-          로그인 →
-        </button>
+        <div className="auth-actions">
+          <button type="submit" className="auth-submit">
+            로그인 →
+          </button>
+        </div>
         <button
           type="button"
           className="auth-switch"

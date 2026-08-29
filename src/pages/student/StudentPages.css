@@ -1,0 +1,617 @@
+.student-page {
+  min-height: 100%;
+  padding: 32px 22px 28px;
+  color: #202020;
+}
+
+.student-home {
+  padding-top: 38px;
+}
+
+.student-home__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.student-home__identity {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.student-home__school {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  border-radius: 50%;
+  background: #e7e7e7;
+  color: #555;
+  font-size: 8px;
+  line-height: 1.1;
+  text-align: center;
+}
+
+.student-home__identity p {
+  margin: 0;
+  font-size: 11px;
+}
+
+.student-home__notice {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: #dedede;
+  color: #fff;
+  font-size: 17px;
+  cursor: pointer;
+}
+
+.student-home__active h1 {
+  margin: 0 0 16px;
+  font-size: 23px;
+  font-weight: 500;
+}
+
+.student-home__active h2 {
+  margin: 0 0 14px;
+  font-size: 16px;
+}
+
+.student-home__active-content {
+  display: grid;
+  grid-template-columns: 106px 1fr;
+  gap: 10px;
+}
+
+.student-home__active-image {
+  display: grid;
+  height: 130px;
+  place-items: center;
+  color: rgba(0, 0, 0, 0.25);
+  font-size: 28px;
+  font-weight: 800;
+}
+
+.student-home__active-info {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+}
+
+.student-home__deadline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+.student-home__deadline b {
+  font-size: 15px;
+}
+
+.student-home__progress {
+  height: 3px;
+  margin-top: 8px;
+  background: #d9d9d9;
+}
+
+.student-home__progress span {
+  display: block;
+  width: 58%;
+  height: 100%;
+  background: #202020;
+}
+
+.student-home__progress-label {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2px;
+  color: #aaa;
+  font-size: 7px;
+}
+
+.student-home__active-info p {
+  margin: 13px 0 12px;
+  font-size: 12px;
+}
+
+.student-home__active-info button {
+  margin-top: auto;
+  padding: 8px;
+  border: 0;
+  border-radius: 7px;
+  background: #949494;
+  color: #fff;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.student-home__latest {
+  margin-top: 30px;
+}
+
+.student-home__latest-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.student-home__latest-heading h2 {
+  margin: 0;
+  font-size: 21px;
+  font-weight: 500;
+}
+
+.student-home__latest-heading button {
+  border: 0;
+  background: none;
+  color: #888;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.student-home__latest-card {
+  position: relative;
+  display: grid;
+  width: 100%;
+  aspect-ratio: 1.55;
+  padding: 18px;
+  place-items: center;
+  overflow: hidden;
+  border: 0;
+  border-radius: 4px;
+  color: rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+}
+
+.student-home__latest-card > span {
+  font-size: 36px;
+  font-weight: 800;
+}
+
+.student-home__latest-card strong,
+.student-home__latest-card small {
+  position: absolute;
+  left: 14px;
+  padding: 4px 7px;
+  background: rgba(255, 255, 255, 0.86);
+  color: #222;
+}
+
+.student-home__latest-card strong {
+  bottom: 34px;
+  font-size: 12px;
+}
+
+.student-home__latest-card small {
+  bottom: 12px;
+  color: #666;
+  font-size: 9px;
+}
+
+.student-page__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 28px;
+}
+
+.student-page__eyebrow {
+  color: #777;
+  font-size: 12px;
+}
+
+.student-page__top h1 {
+  margin: 8px 0 0;
+  font-size: 24px;
+  line-height: 1.35;
+}
+
+.student-page__notice {
+  width: 36px;
+  height: 36px;
+  border: 1px solid #e5e5e5;
+  border-radius: 50%;
+  background: #fff;
+  font-size: 20px;
+}
+
+.student-home__search {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 17px;
+  border: 0;
+  border-radius: 12px;
+  background: #292929;
+  color: #fff;
+  text-align: left;
+  cursor: pointer;
+}
+
+.student-section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 30px 0 14px;
+}
+
+.student-section-heading h2 {
+  margin: 0;
+  font-size: 17px;
+}
+
+.student-section-heading button {
+  border: 0;
+  background: none;
+  color: #777;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.student-home__recommendations {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.student-home__recommendations button {
+  display: flex;
+  min-width: 0;
+  padding: 10px;
+  flex-direction: column;
+  gap: 6px;
+  border: 1px solid #ececec;
+  border-radius: 12px;
+  background: #fff;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.student-home__job-image {
+  display: grid;
+  width: 100%;
+  aspect-ratio: 1.25;
+  margin-bottom: 4px;
+  place-items: center;
+  border-radius: 8px;
+  color: rgba(0, 0, 0, 0.28);
+  font-size: 28px;
+  font-weight: 800;
+}
+
+.student-home__recommendations strong {
+  overflow: hidden;
+  width: 100%;
+  font-size: 13px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.student-home__recommendations span,
+.student-home__recommendations b {
+  color: #777;
+  font-size: 11px;
+  font-weight: 400;
+}
+
+.student-home__recommendations b {
+  color: #222;
+  font-weight: 700;
+}
+
+.student-page__simple-header {
+  margin-bottom: 28px;
+}
+
+.student-page__simple-header h1 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.matches-page {
+  padding-top: 56px;
+}
+
+.matches-current h1 {
+  margin: 0 0 18px;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.matches-current h2 {
+  margin: 0 0 14px;
+  font-size: 15px;
+}
+
+.matches-current__content {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 10px;
+}
+
+.matches-current__image {
+  display: grid;
+  height: 110px;
+  place-items: center;
+  color: rgba(0, 0, 0, 0.25);
+  font-size: 25px;
+  font-weight: 800;
+}
+
+.matches-current__info {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+}
+
+.matches-current__deadline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+}
+
+.matches-current__deadline b {
+  font-size: 13px;
+}
+
+.matches-current__progress {
+  height: 3px;
+  margin-top: 7px;
+  background: #d8d8d8;
+}
+
+.matches-current__progress span {
+  display: block;
+  width: 58%;
+  height: 100%;
+  background: #222;
+}
+
+.matches-current__labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2px;
+  color: #aaa;
+  font-size: 7px;
+}
+
+.matches-current__info p {
+  margin: 11px 0 9px;
+  font-size: 11px;
+}
+
+.matches-current__info button {
+  margin-top: auto;
+  padding: 7px;
+  border: 0;
+  border-radius: 6px;
+  background: #999;
+  color: #fff;
+  font-size: 10px;
+  cursor: pointer;
+}
+
+.match-history {
+  margin-top: 34px;
+}
+
+.match-history > h2 {
+  margin: 0 0 12px;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.match-history__list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.match-history__item {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 13px;
+  min-height: 84px;
+}
+
+.match-history__image {
+  display: grid;
+  width: 90px;
+  height: 84px;
+  place-items: center;
+  color: rgba(0, 0, 0, 0.23);
+  font-size: 21px;
+  font-weight: 800;
+}
+
+.match-history__content {
+  display: flex;
+  min-width: 0;
+  padding: 2px 0;
+  flex-direction: column;
+}
+
+.match-history__content h3 {
+  overflow: hidden;
+  margin: 0 0 5px;
+  font-size: 13px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.match-history__content > span {
+  color: #888;
+  font-size: 9px;
+}
+
+.match-history__status {
+  margin-top: auto;
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: #999;
+  color: #fff;
+  font-size: 9px;
+  text-align: center;
+}
+
+.mypage,
+.mypage-edit {
+  position: relative;
+  padding-top: 34px;
+}
+
+.mypage__header {
+  display: grid;
+  grid-template-columns: 28px 1fr 28px;
+  align-items: center;
+}
+
+.mypage__header button {
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #555;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.mypage__header h1 {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.mypage__profile {
+  display: flex;
+  width: 100%;
+  margin-top: 48px;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  border: 0;
+  background: none;
+  color: #222;
+  cursor: pointer;
+}
+
+.mypage__avatar,
+.mypage-edit__avatar {
+  display: grid;
+  width: 96px;
+  height: 96px;
+  place-items: center;
+  border-radius: 50%;
+  background: #dedede;
+  color: #777;
+  font-size: 22px;
+}
+
+.mypage__profile strong {
+  font-size: 14px;
+}
+
+.mypage__menu {
+  margin-top: 24px;
+  border-top: 1px solid #d9d9d9;
+}
+
+.mypage__menu button {
+  display: grid;
+  grid-template-columns: 18px 1fr 16px;
+  gap: 9px;
+  align-items: center;
+  width: 100%;
+  padding: 14px 2px;
+  border: 0;
+  border-bottom: 1px solid #e3e3e3;
+  background: #fff;
+  color: #333;
+  font-size: 12px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.mypage__menu-icon {
+  color: #d7d7d7;
+}
+
+.mypage__menu b {
+  color: #999;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.mypage-edit__avatar {
+  margin: 46px auto 30px;
+}
+
+.mypage-edit__form {
+  display: flex;
+  min-height: 390px;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.mypage-edit__form label {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.mypage-edit__form label span {
+  color: #666;
+  font-size: 10px;
+}
+
+.mypage-edit__form input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #d8d8d8;
+  border-radius: 6px;
+  background: #f5f5f5;
+  color: #555;
+  font: inherit;
+  font-size: 11px;
+}
+
+.mypage-edit__form input:disabled {
+  color: #999;
+  opacity: 1;
+  cursor: default;
+}
+
+.mypage-edit__form input:not(:disabled) {
+  border-color: #888;
+  background: #fff;
+  color: #222;
+  outline: none;
+}
+
+.mypage-edit__form input:not(:disabled):focus {
+  border-color: #222;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.08);
+}
+
+.mypage-edit__form > button {
+  margin-top: auto;
+  padding: 12px;
+  border: 0;
+  border-radius: 6px;
+  background: #888;
+  color: #fff;
+  cursor: pointer;
+}

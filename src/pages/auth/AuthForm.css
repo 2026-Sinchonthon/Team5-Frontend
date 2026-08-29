@@ -32,6 +32,7 @@
 
 .auth-submit {
   margin-top: auto;
+  width: 100%;
   padding: 14px;
   border: none;
   border-radius: 6px;
@@ -40,6 +41,33 @@
   font-size: 15px;
   font-weight: 600;
   cursor: pointer;
+}
+
+.auth-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: auto;
+}
+
+.auth-actions .auth-submit {
+  margin-top: 0;
+}
+
+.auth-home-shortcut {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #8a8a8a;
+  border-radius: 6px;
+  background: #fff;
+  color: #555;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.auth-home-shortcut:hover {
+  background: #f3f3f3;
 }
 
 .auth-submit:hover {
