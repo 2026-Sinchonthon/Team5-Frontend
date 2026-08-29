@@ -1,25 +1,4 @@
-.login-page {
-  max-width: 360px;
-  min-height: 100svh;
-  margin: 0 auto;
-  padding: 32px 24px 40px;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  border-left: 1px solid #e5e4e7;
-  border-right: 1px solid #e5e4e7;
-}
-
-.login-page__title {
-  align-self: flex-start;
-  margin: 0 0 56px;
-  padding-bottom: 4px;
-  border-bottom: 2px solid #1a1a1a;
-  font-size: 20px;
-  font-weight: 700;
-}
-
-.login-page__logo {
+.role-select__logo {
   width: 140px;
   height: 140px;
   margin: 0 auto 40px;
@@ -32,21 +11,21 @@
   font-weight: 600;
 }
 
-.login-page__hint {
+.role-select__hint {
   margin: 0 0 24px;
   text-align: center;
   color: #555;
   font-size: 14px;
 }
 
-.login-page__buttons {
+.role-select__buttons {
   display: flex;
   flex-direction: column;
   gap: 16px;
   margin-top: auto;
 }
 
-.login-page__button {
+.role-select__button {
   padding: 14px;
   border: none;
   border-radius: 6px;
@@ -57,6 +36,6 @@
   cursor: pointer;
 }
 
-.login-page__button:hover {
+.role-select__button:hover {
   background: #767676;
 }

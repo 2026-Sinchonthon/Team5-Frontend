@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import RoleSelectPage from "../pages/auth/RoleSelectPage";
 import LoginPage from "../pages/auth/LoginPage";
 import SignupPage from "../pages/auth/SignupPage";
 import StudentLayout from "../layouts/StudentLayout";
@@ -12,8 +13,9 @@ import ApplicantListPage from "../pages/owner/ApplicantListPage";
 import OwnerChatPage from "../pages/owner/ChatPage";
 
 export const router = createBrowserRouter([
-  { path: "/login", element: <LoginPage /> },
-  { path: "/signup", element: <SignupPage /> },
+  { path: "/", element: <RoleSelectPage /> },
+  { path: "/login/:role", element: <LoginPage /> },
+  { path: "/signup/:role", element: <SignupPage /> },
   {
     path: "/student",
     element: <StudentLayout />,

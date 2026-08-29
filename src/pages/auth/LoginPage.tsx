@@ -1,33 +1,34 @@
-import { useNavigate } from "react-router-dom";
-import "./LoginPage.css";
+import { useNavigate, useParams } from "react-router-dom";
+import AuthFrame from "../../components/common/AuthFrame";
+import "./AuthForm.css";
 
 export default function LoginPage() {
   const navigate = useNavigate();
+  const { role } = useParams();
 
   return (
-    <div className="login-page">
-      <h1 className="login-page__title">로그인</h1>
+    <AuthFrame title="로그인">
+      <form className="auth-form" onSubmit={(e) => e.preventDefault()}>
+        <div className="auth-field">
+          <label htmlFor="email">이메일</label>
+          <input id="email" type="email" placeholder="이메일을 입력해주세요" />
+        </div>
+        <div className="auth-field">
+          <label htmlFor="password">비밀번호</label>
+          <input id="password" type="password" placeholder="비밀번호를 입력하세요" />
+        </div>
 
-      <div className="login-page__logo">로고</div>
-
-      <p className="login-page__hint">아래 버튼을 눌러 선택해주세요.</p>
-
-      <div className="login-page__buttons">
-        <button
-          type="button"
-          className="login-page__button"
-          onClick={() => navigate("/owner/jobs/new")}
-        >
-          사장님
+        <button type="submit" className="auth-submit">
+          로그인 →
         </button>
         <button
           type="button"
-          className="login-page__button"
-          onClick={() => navigate("/student/jobs")}
+          className="auth-switch"
+          onClick={() => navigate(`/signup/${role}`)}
         >
-          학생
+          회원가입
         </button>
-      </div>
-    </div>
+      </form>
+    </AuthFrame>
   );
 }
