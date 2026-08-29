@@ -82,6 +82,7 @@
 
 .auth-error {
   margin: -8px 0 16px;
+  white-space: pre-line;
   color: var(--color-danger-text);
   font-size: 13px;
 }

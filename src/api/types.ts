@@ -5,7 +5,10 @@ export interface ApiResponse<T> {
   code: string;
   message: string;
   result: T;
-  error: { message: string } | null;
+  // Field validation failures come back as { fieldName: reason }, e.g.
+  // { "password": "size must be between 8 and 72" }. Other errors (like
+  // a duplicate email) leave this null and put the message on `message`.
+  error: Record<string, string> | null;
 }
 
 export type MemberRole = "STUDENT" | "OWNER";

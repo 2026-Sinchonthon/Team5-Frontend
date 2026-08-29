@@ -16,11 +16,11 @@ apiClient.interceptors.request.use((config) => {
 
 export function getApiErrorMessage(error: unknown, fallback: string): string {
   if (isAxiosError<ApiResponse<unknown>>(error)) {
-    return (
-      error.response?.data?.error?.message ??
-      error.response?.data?.message ??
-      fallback
-    );
+    const fieldErrors = error.response?.data?.error;
+    if (fieldErrors && Object.keys(fieldErrors).length > 0) {
+      return Object.values(fieldErrors).join("\n");
+    }
+    return error.response?.data?.message ?? fallback;
   }
   return fallback;
 }
