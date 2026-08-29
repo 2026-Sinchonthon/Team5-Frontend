@@ -7,7 +7,7 @@ export default function JobCreatePage() {
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    navigate("/owner/home");
+    navigate("/owner/jobs/new/processing");
   };
 
   return (
