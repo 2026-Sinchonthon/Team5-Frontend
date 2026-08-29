@@ -1,10 +1,20 @@
+import type { FormEvent } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import AuthFrame from "../../components/common/AuthFrame";
 import "./AuthForm.css";
 
 export default function SignupPage() {
+  const navigate = useNavigate();
+  const { role } = useParams();
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    navigate(role === "owner" ? "/owner/home" : "/student/jobs");
+  };
+
   return (
     <AuthFrame title="회원가입">
-      <form className="auth-form" onSubmit={(e) => e.preventDefault()}>
+      <form className="auth-form" onSubmit={handleSubmit}>
         <div className="auth-field">
           <label htmlFor="email">이메일</label>
           <input
