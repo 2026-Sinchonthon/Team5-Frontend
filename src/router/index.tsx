@@ -11,6 +11,7 @@ import StudentChatPage from "../pages/student/ChatPage";
 import OwnerLayout from "../layouts/OwnerLayout";
 import OwnerHomePage from "../pages/owner/HomePage";
 import OwnerJobsPage from "../pages/owner/JobsPage";
+import JobsSearchPage from "../pages/owner/JobsSearchPage";
 import JobCreatePage from "../pages/owner/JobCreatePage";
 import JobProcessingPage from "../pages/owner/JobProcessingPage";
 import JobEditPage from "../pages/owner/JobEditPage";
@@ -37,6 +38,7 @@ export const router = createBrowserRouter([
       { path: "chat/:roomId", element: <StudentChatPage /> },
     ],
   },
+  { path: "/owner/jobs/search", element: <JobsSearchPage /> },
   { path: "/owner/jobs/new", element: <JobCreatePage /> },
   { path: "/owner/jobs/new/processing", element: <JobProcessingPage /> },
   { path: "/owner/jobs/:jobId/edit", element: <JobEditPage /> },

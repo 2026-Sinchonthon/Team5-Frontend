@@ -9,23 +9,36 @@
   cursor: pointer;
 }
 
-.owner-jobs__sort {
+.owner-jobs__search-row {
   display: flex;
-  gap: 16px;
+  align-items: center;
+  gap: 8px;
   margin-bottom: 20px;
 }
 
-.owner-jobs__sort-option {
+.owner-jobs__search-label {
+  color: #1a1a1a;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.owner-jobs__filter-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: none;
   background: none;
   padding: 0;
   color: #9a9a9a;
-  font-size: 13px;
   cursor: pointer;
 }
 
-.owner-jobs__sort-option--active {
-  color: #1a1a1a;
+.owner-jobs__filter-chip {
+  border-radius: 999px;
+  background: #6b6375;
+  padding: 6px 12px;
+  color: #fff;
+  font-size: 12px;
   font-weight: 600;
 }
 
