@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import AuthFrame from "../../components/common/AuthFrame";
-import "./RoleSelectPage.css";
+import "./Owner_RoleSelectPage.css";
 
-export default function RoleSelectPage() {
+export default function Owner_RoleSelectPage() {
   const navigate = useNavigate();
 
   return (

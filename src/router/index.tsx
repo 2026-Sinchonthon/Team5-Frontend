@@ -1,8 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
-import RoleSelectPage from "../pages/auth/RoleSelectPage";
+import Owner_RoleSelectPage from "../pages/auth/Owner_RoleSelectPage";
 import SplashPage from "../pages/auth/SplashPage";
-import LoginPage from "../pages/auth/LoginPage";
-import SignupPage from "../pages/auth/SignupPage";
+import Owner_LoginPage from "../pages/auth/Owner_LoginPage";
+import Owner_SignupPage from "../pages/auth/Owner_SignupPage";
 import StudentLayout from "../layouts/StudentLayout";
 import JobListPage from "../pages/student/JobListPage";
 import JobDetailPage from "../pages/student/JobDetailPage";
@@ -24,10 +24,10 @@ import MyPostsPage from "../pages/owner/MyPostsPage";
 import OwnerChatPage from "../pages/owner/ChatPage";
 
 export const router = createBrowserRouter([
-  { path: "/", element: <RoleSelectPage /> },
+  { path: "/", element: <Owner_RoleSelectPage /> },
   { path: "/splash/:role", element: <SplashPage /> },
-  { path: "/login/:role", element: <LoginPage /> },
-  { path: "/signup/:role", element: <SignupPage /> },
+  { path: "/login/:role", element: <Owner_LoginPage /> },
+  { path: "/signup/:role", element: <Owner_SignupPage /> },
   {
     path: "/student",
     element: <StudentLayout />,

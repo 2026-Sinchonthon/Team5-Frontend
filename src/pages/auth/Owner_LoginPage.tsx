@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import AuthFrame from "../../components/common/AuthFrame";
 import "./AuthForm.css";
 
-export default function LoginPage() {
+export default function Owner_LoginPage() {
   const navigate = useNavigate();
   const { role } = useParams();
 
