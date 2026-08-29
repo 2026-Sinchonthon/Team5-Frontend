@@ -53,7 +53,7 @@ export default function OwnerSignupPage() {
           <label htmlFor="email">이메일</label>
           <input
             id="email"
-            type="text"
+            type="email"
             placeholder="이메일을 입력해주세요"
             value={email}
             onChange={(event) => setEmail(event.target.value)}
@@ -68,6 +68,7 @@ export default function OwnerSignupPage() {
             placeholder="비밀번호를 입력하세요"
             value={password}
             onChange={(event) => setPassword(event.target.value)}
+            minLength={8}
             required
           />
         </div>
@@ -79,6 +80,7 @@ export default function OwnerSignupPage() {
             placeholder="동일한 비밀번호를 입력하세요"
             value={passwordConfirm}
             onChange={(event) => setPasswordConfirm(event.target.value)}
+            minLength={8}
             required
           />
         </div>

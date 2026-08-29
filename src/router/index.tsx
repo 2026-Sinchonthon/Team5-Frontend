@@ -18,6 +18,7 @@ import OwnerMyPage from "../pages/owner/MyPage";
 import AccountPage from "../pages/owner/AccountPage";
 import MyPostsPage from "../pages/owner/MyPostsPage";
 import OwnerChatPage from "../pages/owner/ChatPage";
+import RequireAuth from "../components/common/RequireAuth";
 
 export const router = createBrowserRouter([
   { path: "/", element: <RoleSelectPage /> },
@@ -27,23 +28,28 @@ export const router = createBrowserRouter([
 
   ...studentRoutes,
 
-  { path: "/owner/jobs/search", element: <JobsSearchPage /> },
-  { path: "/owner/jobs/new", element: <JobCreatePage /> },
-  { path: "/owner/jobs/new/processing", element: <JobProcessingPage /> },
-  { path: "/owner/jobs/:jobId/edit", element: <JobEditPage /> },
-  { path: "/owner/jobs/:jobId/completed", element: <JobCompletedPage /> },
-  { path: "/owner/mypage/account", element: <AccountPage /> },
-  { path: "/owner/chat/:roomId", element: <OwnerChatPage /> },
   {
-    path: "/owner",
-    element: <OwnerLayout />,
+    element: <RequireAuth role="OWNER" />,
     children: [
+      { path: "/owner/jobs/search", element: <JobsSearchPage /> },
+      { path: "/owner/jobs/new", element: <JobCreatePage /> },
+      { path: "/owner/jobs/new/processing", element: <JobProcessingPage /> },
+      { path: "/owner/jobs/:jobId/edit", element: <JobEditPage /> },
+      { path: "/owner/jobs/:jobId/completed", element: <JobCompletedPage /> },
+      { path: "/owner/mypage/account", element: <AccountPage /> },
+      { path: "/owner/chat/:roomId", element: <OwnerChatPage /> },
+      {
+        path: "/owner",
+        element: <OwnerLayout />,
+        children: [
       { path: "home", element: <OwnerHomePage /> },
       { path: "jobs", element: <OwnerJobsPage /> },
       { path: "jobs/:jobId/applicants", element: <ApplicantListPage /> },
       { path: "matching", element: <OwnerMatchingPage /> },
       { path: "mypage", element: <OwnerMyPage /> },
       { path: "mypage/posts", element: <MyPostsPage /> },
+        ],
+      },
     ],
   },
 ]);

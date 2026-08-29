@@ -11,15 +11,18 @@ import StudentHomePage from "../pages/student/StudentHomePage";
 import StudentMatchesPage from "../pages/student/StudentMatchesPage";
 import StudentMyPage from "../pages/student/StudentMyPage";
 import StudentMyPageEditPage from "../pages/student/StudentMyPageEditPage";
+import RequireAuth from "../components/common/RequireAuth";
 
 export const studentRoutes: RouteObject[] = [
   { path: "/login/student", element: <StudentLoginPage /> },
   { path: "/signup/student", element: <StudentSignupPage /> },
   { path: "/student/splash", element: <StudentSplashPage /> },
   {
-    path: "/student",
-    element: <StudentLayout />,
-    children: [
+    element: <RequireAuth role="STUDENT" />,
+    children: [{
+      path: "/student",
+      element: <StudentLayout />,
+      children: [
       { index: true, element: <StudentHomePage /> },
       { path: "jobs", element: <StudentJobListPage /> },
       { path: "jobs/:jobId", element: <StudentJobDetailPage /> },
@@ -28,6 +31,7 @@ export const studentRoutes: RouteObject[] = [
       { path: "mypage", element: <StudentMyPage /> },
       { path: "mypage/edit", element: <StudentMyPageEditPage /> },
       { path: "chat/:roomId", element: <StudentChatPage /> },
-    ],
+      ],
+    }],
   },
 ];

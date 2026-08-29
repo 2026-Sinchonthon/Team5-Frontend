@@ -1,53 +1,7 @@
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { studentJobs } from "../../data/studentJobs";
+import { getJobPost } from "../../api/jobPosts";
+import { getApiErrorMessage } from "../../api/client";
+import type { JobPostDetail } from "../../api/types";
 import "./StudentJobs.css";
-
-export default function StudentJobDetailPage() {
-  const navigate = useNavigate();
-  const { jobId } = useParams();
-  const job = studentJobs.find((item) => item.id === Number(jobId));
-
-  if (!job) {
-    return (
-      <section className="jobs-page jobs-page--empty">
-        <p>공고를 찾을 수 없습니다.</p>
-        <button type="button" onClick={() => navigate("/student/jobs")}>목록으로 돌아가기</button>
-      </section>
-    );
-  }
-
-  return (
-    <article className="job-detail">
-      <header className="job-detail__header">
-        <button type="button" className="jobs-page__back" onClick={() => navigate(-1)} aria-label="뒤로가기">‹</button>
-        <h1>{job.storeName}</h1>
-        <span aria-hidden="true" />
-      </header>
-
-      <div className="job-detail__hero" style={{ background: job.color }}>
-        <span>{job.storeName.slice(0, 1)}</span>
-      </div>
-
-      <div className="job-detail__body">
-        <span className="job-detail__category">{job.category}</span>
-        <section>
-          <h2>사장님 요청 내용</h2>
-          <p>{job.description}</p>
-        </section>
-        <dl className="job-detail__info">
-          <div><dt>마감 기한</dt><dd>{job.deadline}</dd></div>
-          <div><dt>사례금</dt><dd>{job.reward}</dd></div>
-          <div><dt>매칭 현황</dt><dd>{job.matchStatus}</dd></div>
-        </dl>
-      </div>
-
-      <button
-        type="button"
-        className="job-detail__apply"
-        onClick={() => navigate(`/student/jobs/${job.id}/apply`)}
-      >
-        매칭 신청하기
-      </button>
-    </article>
-  );
-}
+export default function StudentJobDetailPage() { const navigate = useNavigate(); const { jobId } = useParams(); const [job, setJob] = useState<JobPostDetail | null>(null); const [error, setError] = useState<string | null>(null); useEffect(() => { if (jobId) getJobPost(Number(jobId)).then(setJob).catch((e) => setError(getApiErrorMessage(e, "공고를 불러오지 못했습니다."))); }, [jobId]); if (error || !job) return <section className="jobs-page jobs-page--empty"><p>{error ?? "불러오는 중..."}</p></section>; return <article className="job-detail"><header className="job-detail__header"><button type="button" className="jobs-page__back" onClick={() => navigate(-1)} aria-label="뒤로가기">‹</button><h1>{job.title}</h1><span /></header><div className="job-detail__hero">{job.images[0] ? <img src={job.images[0].imageUrl} alt="" /> : <span>{job.title[0]}</span>}</div><div className="job-detail__body"><span className="job-detail__category">{job.category}</span><section><h2>사장님 요청 내용</h2><p>{job.description}</p></section><dl className="job-detail__info"><div><dt>마감 기한</dt><dd>{job.deadline.slice(0, 10)}</dd></div><div><dt>사례금</dt><dd>{job.budget.toLocaleString()}원</dd></div><div><dt>매칭 현황</dt><dd>{job.status}</dd></div></dl></div><button type="button" className="job-detail__apply" onClick={() => navigate(`/student/jobs/${job.jobPostId}/apply`)}>매칭 신청하기</button></article>; }

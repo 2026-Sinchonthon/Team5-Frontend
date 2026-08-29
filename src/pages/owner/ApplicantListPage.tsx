@@ -1,3 +1,6 @@
-export default function ApplicantListPage() {
-  return <div>지원자 확인/선택</div>;
-}
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { acceptApplication, getApplicants } from "../../api/applications";
+import { getApiErrorMessage } from "../../api/client";
+import type { Applicant } from "../../api/types";
+export default function ApplicantListPage() { const { jobId } = useParams(); const [items, setItems] = useState<Applicant[]>([]); const [error, setError] = useState<string | null>(null); const [amount, setAmount] = useState(""); const [deadline, setDeadline] = useState(""); const load = () => { if (!jobId) return; return getApplicants(Number(jobId)).then(setItems).catch((e) => setError(getApiErrorMessage(e, "지원자를 불러오지 못했습니다."))); }; useEffect(() => { void load(); }, [jobId]); const accept = async (id: number) => { try { await acceptApplication(id, Number(amount), `${deadline}T23:59:59+09:00`); void load(); } catch (e) { setError(getApiErrorMessage(e, "지원 수락에 실패했습니다.")); } }; return <section><h1>지원자 확인/선택</h1>{error && <p>{error}</p>}<label>합의 금액 <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} required /></label><label>작업 기한 <input type="date" value={deadline} onChange={(e) => setDeadline(e.target.value)} required /></label>{items.map((item) => <article key={item.applicationId}><h2>{item.student.name} · {item.student.university}</h2><p>{item.message}</p><p>{item.student.major} / {item.student.introduction}</p><button type="button" disabled={!amount || !deadline || item.status !== "PENDING"} onClick={() => accept(item.applicationId)}>수락하고 매칭 생성</button></article>)}</section>; }

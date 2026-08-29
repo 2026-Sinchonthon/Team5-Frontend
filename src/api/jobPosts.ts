@@ -36,9 +36,17 @@ export async function getMyJobPosts(): Promise<MyJobPost[]> {
 export async function createJobPost(
   payload: CreateJobPostRequest,
 ): Promise<CreateJobPostResponse> {
+  const { images, ...request } = payload;
+  const formData = new FormData();
+  formData.append(
+    "request",
+    new Blob([JSON.stringify(request)], { type: "application/json" }),
+  );
+  images?.forEach((image) => formData.append("images", image));
+
   const { data } = await apiClient.post<ApiResponse<CreateJobPostResponse>>(
     "/job-posts",
-    payload,
+    formData,
   );
   return data.result;
 }

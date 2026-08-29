@@ -15,6 +15,7 @@ export default function JobCreatePage() {
   const [category, setCategory] = useState<JobPostCategory | null>(null);
   const [deadline, setDeadline] = useState("");
   const [budget, setBudget] = useState("");
+  const [images, setImages] = useState<File[]>([]);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -36,6 +37,7 @@ export default function JobCreatePage() {
         category,
         budget: Number(budget),
         deadline: `${deadline}T23:59:59+09:00`,
+        images,
       });
       navigate("/owner/jobs/new/processing");
     } catch (error) {
@@ -66,7 +68,13 @@ export default function JobCreatePage() {
 
       <form className="job-create__form" onSubmit={handleSubmit}>
         <label className="job-create__image-upload">
-          <input type="file" accept="image/*" hidden />
+          <input
+            type="file"
+            accept="image/*"
+            multiple
+            hidden
+            onChange={(event) => setImages(Array.from(event.target.files ?? []))}
+          />
           <svg
             width="22"
             height="22"

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import AuthFrame from "../../components/common/AuthFrame";
 import { login } from "../../api/auth";
 import { getApiErrorMessage } from "../../api/client";
-import { setAccessToken } from "../../api/token";
+import { setAuthenticatedSession } from "../../api/token";
 import "./OwnerAuthForm.css";
 
 export default function OwnerLoginPage() {
@@ -19,9 +19,9 @@ export default function OwnerLoginPage() {
     setIsSubmitting(true);
 
     try {
-      const { accessToken } = await login({ email, password });
-      setAccessToken(accessToken);
-      navigate("/owner/home");
+      const { accessToken, member } = await login({ email, password });
+      setAuthenticatedSession(accessToken, member.role);
+      navigate(member.role === "STUDENT" ? "/student" : "/owner/home");
     } catch (error) {
       setErrorMessage(
         getApiErrorMessage(

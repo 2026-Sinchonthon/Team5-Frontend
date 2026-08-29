@@ -24,6 +24,13 @@ export type MatchingStatus =
   | "CANCELED";
 export type SubmissionStatus = "SUBMITTED" | "REVISION_REQUESTED" | "APPROVED";
 
+export interface MemberMe { memberId: number; email: string; name: string; role: MemberRole; status: MemberStatus; profile: { universityName?: string; major?: string; introduction?: string; businessName?: string; address?: string } }
+export interface ApplicationSummary { applicationId: number; jobPost: { jobPostId: number; title: string; businessName: string; budget: number; deadline: string }; status: ApplicationStatus; appliedAt: string }
+export interface Applicant { applicationId: number; student: { memberId: number; name: string; university: string; major: string; introduction: string }; message: string; status: ApplicationStatus; appliedAt: string }
+export interface MatchingSummary { matchingId: number; jobPost: { jobPostId: number; title: string; businessName: string; thumbnailImageUrl: string | null }; agreedAmount: number; deadline: string; revisionCount: number; revisionLimit: number; status: MatchingStatus }
+export interface MatchingDetail extends MatchingSummary { owner: { memberId: number; name: string; businessName: string }; student: { memberId: number; name: string; university: string; major: string }; jobPost: MatchingSummary["jobPost"] & { description: string } }
+export interface SubmissionHistory { submissionId: number; roundNumber: number; description: string | null; status: SubmissionStatus; submittedAt: string; files: { fileId: number; originalName: string; fileUrl: string }[]; revisionRequest: { reason: string; requestedAt: string } | null }
+
 export interface LoginRequest {
   email: string;
   password: string;
@@ -132,7 +139,7 @@ export interface CreateJobPostRequest {
   title: string;
   description: string;
   rawRequest?: string;
-  imageUrls?: string[];
+  images?: File[];
   category: JobPostCategory;
   budget: number;
   deadline: string;
