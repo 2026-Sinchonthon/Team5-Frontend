@@ -1,0 +1,20 @@
+.job-edit__confirm-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.job-edit__delete {
+  border: none;
+  border-radius: 6px;
+  background: #8a8a8a;
+  padding: 14px;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.job-edit__delete:hover {
+  background: #767676;
+}

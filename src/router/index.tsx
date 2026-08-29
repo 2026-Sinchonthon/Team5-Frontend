@@ -13,6 +13,7 @@ import OwnerHomePage from "../pages/owner/HomePage";
 import OwnerJobsPage from "../pages/owner/JobsPage";
 import JobCreatePage from "../pages/owner/JobCreatePage";
 import JobProcessingPage from "../pages/owner/JobProcessingPage";
+import JobEditPage from "../pages/owner/JobEditPage";
 import ApplicantListPage from "../pages/owner/ApplicantListPage";
 import OwnerMatchingPage from "../pages/owner/MatchingPage";
 import OwnerMyPage from "../pages/owner/MyPage";
@@ -35,6 +36,7 @@ export const router = createBrowserRouter([
   },
   { path: "/owner/jobs/new", element: <JobCreatePage /> },
   { path: "/owner/jobs/new/processing", element: <JobProcessingPage /> },
+  { path: "/owner/jobs/:jobId/edit", element: <JobEditPage /> },
   {
     path: "/owner",
     element: <OwnerLayout />,
