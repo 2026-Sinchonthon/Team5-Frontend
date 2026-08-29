@@ -7,6 +7,8 @@ import type {
   JobPostListParams,
   JobPostListResponse,
   MyJobPost,
+  RefineJobPostRequest,
+  RefineJobPostResponse,
   UpdateJobPostRequest,
 } from "./types";
 
@@ -30,6 +32,16 @@ export async function getJobPost(jobPostId: number): Promise<JobPostDetail> {
 export async function getMyJobPosts(): Promise<MyJobPost[]> {
   const { data } =
     await apiClient.get<ApiResponse<MyJobPost[]>>("/job-posts/me");
+  return data.result;
+}
+
+export async function refineJobPost(
+  payload: RefineJobPostRequest,
+): Promise<RefineJobPostResponse> {
+  const { data } = await apiClient.post<ApiResponse<RefineJobPostResponse>>(
+    "/job-posts/ai-refine",
+    payload,
+  );
   return data.result;
 }
 
