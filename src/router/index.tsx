@@ -1,13 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
-import Owner_RoleSelectPage from "../pages/auth/Owner_RoleSelectPage";
-import SplashPage from "../pages/auth/SplashPage";
-import Owner_LoginPage from "../pages/auth/Owner_LoginPage";
-import Owner_SignupPage from "../pages/auth/Owner_SignupPage";
-import StudentLayout from "../layouts/StudentLayout";
-import JobListPage from "../pages/student/JobListPage";
-import JobDetailPage from "../pages/student/JobDetailPage";
-import JobApplyPage from "../pages/student/JobApplyPage";
-import StudentChatPage from "../pages/student/ChatPage";
+import RoleSelectPage from "../pages/auth/RoleSelectPage";
+import OwnerSplashPage from "../pages/auth/OwnerSplashPage";
+import OwnerLoginPage from "../pages/auth/OwnerLoginPage";
+import OwnerSignupPage from "../pages/auth/OwnerSignupPage";
+import { studentRoutes } from "./studentRoutes";
 import OwnerLayout from "../layouts/OwnerLayout";
 import OwnerHomePage from "../pages/owner/HomePage";
 import OwnerJobsPage from "../pages/owner/JobsPage";
@@ -24,20 +20,13 @@ import MyPostsPage from "../pages/owner/MyPostsPage";
 import OwnerChatPage from "../pages/owner/ChatPage";
 
 export const router = createBrowserRouter([
-  { path: "/", element: <Owner_RoleSelectPage /> },
-  { path: "/splash/:role", element: <SplashPage /> },
-  { path: "/login/:role", element: <Owner_LoginPage /> },
-  { path: "/signup/:role", element: <Owner_SignupPage /> },
-  {
-    path: "/student",
-    element: <StudentLayout />,
-    children: [
-      { path: "jobs", element: <JobListPage /> },
-      { path: "jobs/:jobId", element: <JobDetailPage /> },
-      { path: "jobs/:jobId/apply", element: <JobApplyPage /> },
-      { path: "chat/:roomId", element: <StudentChatPage /> },
-    ],
-  },
+  { path: "/", element: <RoleSelectPage /> },
+  { path: "/splash/owner", element: <OwnerSplashPage /> },
+  { path: "/login/owner", element: <OwnerLoginPage /> },
+  { path: "/signup/owner", element: <OwnerSignupPage /> },
+
+  ...studentRoutes,
+
   { path: "/owner/jobs/search", element: <JobsSearchPage /> },
   { path: "/owner/jobs/new", element: <JobCreatePage /> },
   { path: "/owner/jobs/new/processing", element: <JobProcessingPage /> },

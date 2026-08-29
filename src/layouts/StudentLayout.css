@@ -1,0 +1,60 @@
+.student-layout {
+  min-height: 100svh;
+  max-width: 390px;
+  margin: 0 auto;
+  background: #fff;
+  border-left: 1px solid #ececef;
+  border-right: 1px solid #ececef;
+}
+
+.student-layout__content {
+  min-height: 100svh;
+  padding-bottom: 96px;
+}
+
+.student-layout__content--chat {
+  padding-bottom: 0;
+}
+
+.student-bottom-nav {
+  position: fixed;
+  z-index: 10;
+  left: 50%;
+  bottom: 16px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  width: min(calc(100% - 32px), 358px);
+  padding: 8px 6px;
+  border: 1px solid #e4e4e4;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 8px 24px rgba(22, 22, 22, 0.12);
+  transform: translateX(-50%);
+  backdrop-filter: blur(12px);
+}
+
+.student-bottom-nav__item {
+  display: flex;
+  min-width: 0;
+  padding: 4px 2px;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  border: 0;
+  background: none;
+  color: #767676;
+  font: inherit;
+  font-size: 11px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.student-bottom-nav__item.active,
+.student-bottom-nav__item:hover {
+  color: #202020;
+}
+
+.student-bottom-nav__icon {
+  font-size: 19px;
+  line-height: 1;
+}
