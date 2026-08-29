@@ -30,6 +30,13 @@
   cursor: pointer;
 }
 
+.jobs-page__status {
+  padding: 24px 0;
+  color: var(--color-text-muted, #888);
+  font-size: 14px;
+  text-align: center;
+}
+
 .jobs-page__search-row {
   display: flex;
   gap: 8px;
